@@ -23,6 +23,7 @@ class MultiModalRAGModel:
         attn_mode=None,
         dtype=torch.bfloat16,
         index_root="./index",
+        low_memory=False,
     ):
         instance = cls()
 
@@ -37,15 +38,16 @@ class MultiModalRAGModel:
         instance.index_name = None
         instance._doc_idx = {}
         instance._doc_id_to_name = {}
-        instance._last_index_id = -1
+        instance._doc_id_to_metadata = {}
         instance._index_embeddings = []
         instance._embed_id_to_doc_id = {}
+        instance.low_memory = low_memory
 
         return instance
 
     @property
-    def doc_idx_to_name(self):
-        return self._doc_idx_to_name
+    def doc_id_to_name(self):
+        return self._doc_id_to_name
 
     @property
     def doc_idx(self):
@@ -59,6 +61,10 @@ class MultiModalRAGModel:
     def index_embeddings(self):
         return self._index_embeddings
 
+    @property
+    def doc_id_to_metadata(self):
+        return self._doc_id_to_metadata
+
     def embed_queries(self, query):
         if isinstance(query, str):
             query = [query]
@@ -69,9 +75,9 @@ class MultiModalRAGModel:
 
         return embedded_query
 
-    def embed_images(self, image):
-        if isinstance(image, Image.Image):
-            images = [image]
+    def embed_images(self, images):
+        if isinstance(images, Image.Image):
+            images = [images]
 
         with torch.inference_mode():
             processed_images = self.processor.process_images(images).to(self.device)
@@ -81,49 +87,65 @@ class MultiModalRAGModel:
 
     def create_index(self, source, index_name, doc_idx=None, metadata=None):
 
-        index_path = Path(self.create_index) / Path(index_name)
+        index_path = Path(self.index_root) / Path(index_name)
         if index_path.exists():
             print(f"Index path {index_path} already exists")
 
+        source_path = Path(source)
+        doc_files = list(source_path.iterdir())
+
+        doc_idx = range(len(doc_files)) if doc_idx is None else doc_idx
+        if len(doc_idx) != len(doc_files):
+            raise ValueError("Different number of doc IDs and docs")
+        if metadata is not None:
+            if len(metadata) != len(doc_files):
+                raise ValueError("Different number of metadata and docs")
+
         self.index_name = index_name
 
-        source_path = Path(source)
-        if source.isdir():
-            source_files = source_path.iterdir()
-        else:
-            source_files = [source_path]
+        for i, (doc_id, doc_file) in enumerate(zip(doc_idx, doc_files)):
+            doc_meta = metadata[i] if metadata else None
+            print(f"Adding doc {doc_file} with doc_id {doc_id} and metadata {doc_meta}")
 
-        using_default_index = doc_idx is None
-        for i, source_file in enumerate(source_files):
-            if using_default_index:
-                doc_id = self._last_index_id + 1
-            else:
-                doc_id = doc_idx[i]
-            doc_meta = metadata[doc_id] if metadata else None
-
-            self.add_to_index(source_file, doc_id, metadata=doc_meta)
+            self.add_to_index(doc_file, doc_id, metadata=doc_meta)
 
     def add_to_index(
         self,
-        item,
+        doc_path,
         doc_id=None,
-        page_id=1,
         metadata=None,
     ):
 
         if self.index_name is None:
             raise RuntimeError("There is no index loaded.")
 
-        pages = process_item(item)
-        embedded_pages = self.embed_images(pages)
+        pages = process_doc(doc_path)
+        print("Embedding pages", print(len(pages)), print(pages))
+        if self.low_memory:
+            print("Low memory mode")
+            for page_num, page in enumerate(pages):
+                print(f"Embedding page {page_num}")
+                embedded_page = self.embed_images(page)[0].cpu()
+                embed_id = len(self._index_embeddings)
+                self._index_embeddings.append(embedded_page)
+                self._embed_id_to_doc_id[embed_id] = {
+                    "doc_id": doc_id,
+                    "page_id": page_num + 1,
+                }
+        else:
+            embedded_pages = self.embed_images(pages)
 
-        for i, embedding in enumerate(torch.unbind(embedded_pages.cpu())):
-            embed_id = len(self._index_embeddings)
-            self._index_embeddings.append(embedding)
-            self._emebd_id_to_doc_id[embed_id] = {
-                "doc_id": doc_id,
-                "page_id": i + 1,
-            }
+            for page_num, embedding in enumerate(torch.unbind(embedded_pages.cpu())):
+                embed_id = len(self._index_embeddings)
+                self._index_embeddings.append(embedding)
+                self._embed_id_to_doc_id[embed_id] = {
+                    "doc_id": doc_id,
+                    "page_id": page_num + 1,
+                }
+
+        self._doc_id_to_name[doc_id] = doc_path.as_posix()
+        self._doc_id_to_metadata[doc_id] = metadata
+        self._doc_idx.append(doc_id)
 
 
 def load_model_and_processor(
@@ -152,21 +174,18 @@ def load_model_and_processor(
     return model, processor
 
 
-def process_item(item):
-    from tempfile import TemporaryDirectory
+def process_doc(doc_path):
+    print(f"Processing item {doc_path}")
 
-    if isinstance(item, Image):
-        return [item]
+    doc_path = Path(doc_path)
+    if doc_path.suffix.lower() == ".pdf":
+        print("It's a PDF")
+        images = convert_from_path(doc_path)
+        return images
 
-    path = Path(item)
-    if path.suffix.lower() == ".pdf":
-        images = convert_from_path(path)
-        with TemporaryDirectory() as temp_dir:
-            image_paths = convert_from_path(
-                path, output_folder=temp_dir, paths_only=True
-            )
+    elif doc_path.suffix.lower() in [".jpg", ".jpeg", ".png", "bmp"]:
+        print("It's an image")
+        return [Image.open(doc_path)]
 
-            return [Image.open(image_path) for image_path in image_paths]
-
-    elif item.suffix.lower() in [".jpg", ".jpeg", ".png", "bmp"]:
-        return [Image.open(item)]
+    else:
+        raise ValueError(f"Unknown file type {doc_path.suffix}")
