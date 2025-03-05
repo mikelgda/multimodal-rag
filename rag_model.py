@@ -119,7 +119,7 @@ class MultiModalRAGModel:
 
         for i, embedding in enumerate(torch.unbind(embedded_pages.cpu())):
             embed_id = len(self._index_embeddings)
-            self._index_embeddings.append
+            self._index_embeddings.append(embedding)
             self._emebd_id_to_doc_id[embed_id] = {
                 "doc_id": doc_id,
                 "page_id": i + 1,
