@@ -36,7 +36,7 @@ class MultiModalRAGModel:
         instance.dtype = dtype
         instance.index_root = index_root
         instance.index_name = None
-        instance._doc_idx = {}
+        instance._doc_idx = []
         instance._doc_id_to_name = {}
         instance._doc_id_to_metadata = {}
         instance._index_embeddings = []
@@ -65,15 +65,15 @@ class MultiModalRAGModel:
     def doc_id_to_metadata(self):
         return self._doc_id_to_metadata
 
-    def embed_queries(self, query):
-        if isinstance(query, str):
-            query = [query]
+    def embed_queries(self, queries):
+        if isinstance(queries, str):
+            queries = [queries]
 
         with torch.inference_mode():
-            processed_query = self.processor.process_query(query).to(self.device)
-            embedded_query = self.model(**processed_query)
+            processed_queries = self.processor.process_queries(queries).to(self.device)
+            embedded_queries = self.model(**processed_queries)
 
-        return embedded_query
+        return embedded_queries
 
     def embed_images(self, images):
         if isinstance(images, Image.Image):
@@ -146,6 +146,13 @@ class MultiModalRAGModel:
         self._doc_id_to_name[doc_id] = doc_path.as_posix()
         self._doc_id_to_metadata[doc_id] = metadata
         self._doc_idx.append(doc_id)
+
+    def search(self, queries, top_k=3):
+        embedded_queries = torch.unbind(self.embed_queries(queries).cpu())
+        scores = self.processor.score(embedded_queries, self._index_embeddings)
+        top_idx = scores.cpu().numpy().argsort()[0, -3:][::-1]
+
+        return scores
 
 
 def load_model_and_processor(
