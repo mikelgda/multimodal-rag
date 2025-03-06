@@ -22,8 +22,7 @@ class MultiModalRAGModel:
         device="cpu",
         attn_mode=None,
         dtype=torch.bfloat16,
-        index_root="./index",
-        low_memory=False,
+        max_pages_per_batch=1,
     ):
         instance = cls()
 
@@ -31,39 +30,56 @@ class MultiModalRAGModel:
             pretrained_model, device=device, attn_mode=attn_mode, dtype=dtype
         )
 
+        instance.pretrained_model = pretrained_model
         instance.device = device
         instance.attn_mode = attn_mode
         instance.dtype = dtype
-        instance.index_root = index_root
         instance.index_name = None
-        instance._doc_idx = []
-        instance._doc_id_to_name = {}
-        instance._doc_id_to_metadata = {}
+        instance._saved_docs = {}
         instance._index_embeddings = []
         instance._embed_id_to_doc_id = {}
-        instance.low_memory = low_memory
+        instance.max_pages_per_batch = max_pages_per_batch
 
         return instance
 
-    @property
-    def doc_id_to_name(self):
-        return self._doc_id_to_name
+    @classmethod
+    def from_index(
+        cls, index_path, device="cpu", attn_mode=None, dtype=None, max_pages_per_batch=1
+    ):
+        import json
 
-    @property
-    def doc_idx(self):
-        return self._doc_idx
+        index_path = Path(index_path)
+        config = json.load((index_path / "config.json").open())
+        docs = json.load((index_path / "docs.json").open())
+        embed_id_to_doc_id = json.load((index_path / "embed_id_to_doc_id.json").open())
 
-    @property
-    def embed_id_to_doc_id(self):
-        return self._embed_id_to_doc_id
+        instance = cls()
 
-    @property
-    def index_embeddings(self):
-        return self._index_embeddings
+        dtype = dtype if dtype else eval(config["dtype"])
+        instance.model, instance.processor = load_model_and_processor(
+            config["pretrained_model"],
+            device=device,
+            attn_mode=attn_mode,
+            dtype=dtype,
+        )
 
-    @property
-    def doc_id_to_metadata(self):
-        return self._doc_id_to_metadata
+        embeddings = []
+        for i in range(config["embedding_chunks"]):
+            embeddings.extend(
+                torch.load((index_path / "embeddings" / f"embeddings_{i}.pt"))
+            )
+
+        instance.pretrained_model = config["pretrained_model"]
+        instance.device = device
+        instance.attn_mode = attn_mode
+        instance.dtype = dtype
+        instance.index_name = config["index_name"]
+        instance._saved_docs = docs
+        instance._index_embeddings = embeddings
+        instance._embed_id_to_doc_id = embed_id_to_doc_id
+        instance.max_pages_per_batch = max_pages_per_batch
+
+        return instance
 
     def embed_queries(self, queries):
         if isinstance(queries, str):
@@ -85,11 +101,18 @@ class MultiModalRAGModel:
 
         return embedded_images
 
-    def create_index(self, source, index_name, doc_idx=None, metadata=None):
+    def create_index(
+        self,
+        source,
+        index_name,
+        doc_idx=None,
+        metadata=None,
+        overwrite=True,
+        max_pages_per_batch=None,
+    ):
 
-        index_path = Path(self.index_root) / Path(index_name)
-        if index_path.exists():
-            print(f"Index path {index_path} already exists")
+        if self.index_name:
+            print(f"There already exists an index {self.index_name}")
 
         source_path = Path(source)
         doc_files = list(source_path.iterdir())
@@ -102,57 +125,115 @@ class MultiModalRAGModel:
                 raise ValueError("Different number of metadata and docs")
 
         self.index_name = index_name
+        max_pages_per_batch = (
+            max_pages_per_batch if max_pages_per_batch else self.max_pages_per_batch
+        )
 
         for i, (doc_id, doc_file) in enumerate(zip(doc_idx, doc_files)):
             doc_meta = metadata[i] if metadata else None
             print(f"Adding doc {doc_file} with doc_id {doc_id} and metadata {doc_meta}")
 
-            self.add_to_index(doc_file, doc_id, metadata=doc_meta)
+            self.add_to_index(
+                doc_file,
+                doc_id,
+                metadata=doc_meta,
+                overwrite=overwrite,
+                max_pages_per_batch=max_pages_per_batch,
+            )
 
     def add_to_index(
         self,
         doc_path,
         doc_id=None,
         metadata=None,
+        overwrite=False,
+        max_pages_per_batch=None,
     ):
 
         if self.index_name is None:
             raise RuntimeError("There is no index loaded.")
 
-        pages = process_doc(doc_path)
-        print("Embedding pages", print(len(pages)), print(pages))
-        if self.low_memory:
-            print("Low memory mode")
-            for page_num, page in enumerate(pages):
-                print(f"Embedding page {page_num}")
-                embedded_page = self.embed_images(page)[0].cpu()
-                embed_id = len(self._index_embeddings)
-                self._index_embeddings.append(embedded_page)
-                self._embed_id_to_doc_id[embed_id] = {
-                    "doc_id": doc_id,
-                    "page_id": page_num + 1,
-                }
-        else:
-            embedded_pages = self.embed_images(pages)
+        if doc_id in self._saved_docs and not overwrite:
+            raise ValueError(f"Doc {doc_id} already exists in the index")
 
+        doc_path = Path(doc_path)
+
+        pages = process_doc(doc_path)
+        print(f"Embedding doc: {doc_path} with {len(pages)} pages")
+        for i in range(0, len(pages), max_pages_per_batch):
+            pages_chunk = pages[i : i + max_pages_per_batch]
+            print(f"Page chunk {i} of length {len(pages_chunk)}")
+            embedded_pages = self.embed_images(pages_chunk)
             for page_num, embedding in enumerate(torch.unbind(embedded_pages.cpu())):
                 embed_id = len(self._index_embeddings)
                 self._index_embeddings.append(embedding)
                 self._embed_id_to_doc_id[embed_id] = {
                     "doc_id": doc_id,
-                    "page_id": page_num + 1,
+                    "page_id": i + page_num + 1,
                 }
 
-        self._doc_id_to_name[doc_id] = doc_path.as_posix()
-        self._doc_id_to_metadata[doc_id] = metadata
-        self._doc_idx.append(doc_id)
+        self._saved_docs[doc_id] = {
+            "doc_path": doc_path.as_posix(),
+            "pages": len(pages),
+            "metadata": metadata,
+        }
+        print("Saved!")
+        print()
 
-    def search(self, queries, top_k=3):
+    def clear_index(self):
+        self._index_embeddings = []
+        self._embed_id_to_doc_id = {}
+        self._saved_docs = {}
+        self.index_name = None
+
+    def search(self, queries, top_k=3, with_scores=True):
         embedded_queries = torch.unbind(self.embed_queries(queries).cpu())
         scores = self.processor.score(embedded_queries, self._index_embeddings)
         top_idx = scores.cpu().numpy().argsort()[0, -3:][::-1]
 
-        return scores
+        doc_page_ids = [self._embed_id_to_doc_id[idx] for idx in top_idx]
+
+        results = []
+        for doc_page_idx in doc_page_ids:
+            doc_result = {}
+            doc_result.update(doc_page_idx)
+            doc_result.update(self._saved_docs[doc_page_idx["doc_id"]])
+            results.append(doc_result)
+
+        if with_scores:
+            return results, scores.cpu().numpy()[0, top_idx]
+        else:
+            return results
+
+    def save_index(self, save_path=None, em_chunk_size=500):
+        import json
+
+        save_path = Path(save_path) / self.index_name
+        save_path.mkdir(parents=True, exist_ok=True)
+
+        embeddings_path = save_path / "embeddings"
+        embeddings_path.mkdir(exist_ok=True)
+        for i in range(0, len(self._index_embeddings), em_chunk_size):
+            torch.save(
+                self._index_embeddings[i : i + em_chunk_size],
+                embeddings_path / f"embeddings_{i}.pt",
+            )
+
+        config = {
+            "index_name": self.index_name,
+            "pretrained_model": self.pretrained_model,
+            "dtype": str(self.dtype),
+            "embedding_chunks": i + 1,
+        }
+
+        json.dump(config, (save_path / "config.json").open("w"))
+
+        json.dump(self._saved_docs, (save_path / "docs.json").open("w"), indent=4)
+        json.dump(
+            self._embed_id_to_doc_id,
+            (save_path / "embed_id_to_doc_id.json").open("w"),
+            indent=4,
+        )
 
 
 def load_model_and_processor(
@@ -182,16 +263,13 @@ def load_model_and_processor(
 
 
 def process_doc(doc_path):
-    print(f"Processing item {doc_path}")
 
     doc_path = Path(doc_path)
     if doc_path.suffix.lower() == ".pdf":
-        print("It's a PDF")
         images = convert_from_path(doc_path)
         return images
 
     elif doc_path.suffix.lower() in [".jpg", ".jpeg", ".png", "bmp"]:
-        print("It's an image")
         return [Image.open(doc_path)]
 
     else:
