@@ -1,4 +1,5 @@
 from pathlib import Path
+from uuid import uuid4
 
 import torch
 from colpali_engine.models import (
@@ -11,9 +12,13 @@ from colpali_engine.models import (
 )
 from pdf2image import convert_from_path
 from PIL import Image
+from qdrant_client import models
+
+from utils import process_doc
+from vlm import VLM
 
 
-class MultiModalRAGModel:
+class SimpleMultiModalRAGModel:
 
     @classmethod
     def from_pretrained(
@@ -26,14 +31,10 @@ class MultiModalRAGModel:
     ):
         instance = cls()
 
-        instance.model, instance.processor = load_model_and_processor(
+        instance.vlm = VLM.from_pretrained(
             pretrained_model, device=device, attn_mode=attn_mode, dtype=dtype
         )
 
-        instance.pretrained_model = pretrained_model
-        instance.device = device
-        instance.attn_mode = attn_mode
-        instance.dtype = dtype
         instance.index_name = None
         instance._saved_docs = {}
         instance._index_embeddings = []
@@ -56,7 +57,7 @@ class MultiModalRAGModel:
         instance = cls()
 
         dtype = dtype if dtype else eval(config["dtype"])
-        instance.model, instance.processor = load_model_and_processor(
+        instance.vlm = VLM.from_pretrained(
             config["pretrained_model"],
             device=device,
             attn_mode=attn_mode,
@@ -80,26 +81,6 @@ class MultiModalRAGModel:
         instance.max_pages_per_batch = max_pages_per_batch
 
         return instance
-
-    def embed_queries(self, queries):
-        if isinstance(queries, str):
-            queries = [queries]
-
-        with torch.inference_mode():
-            processed_queries = self.processor.process_queries(queries).to(self.device)
-            embedded_queries = self.model(**processed_queries)
-
-        return embedded_queries
-
-    def embed_images(self, images):
-        if isinstance(images, Image.Image):
-            images = [images]
-
-        with torch.inference_mode():
-            processed_images = self.processor.process_images(images).to(self.device)
-            embedded_images = self.model(**processed_images)
-
-        return embedded_images
 
     def create_index(
         self,
@@ -163,7 +144,7 @@ class MultiModalRAGModel:
         for i in range(0, len(pages), max_pages_per_batch):
             pages_chunk = pages[i : i + max_pages_per_batch]
             print(f"Page chunk {i} of length {len(pages_chunk)}")
-            embedded_pages = self.embed_images(pages_chunk)
+            embedded_pages = self.vlm.embed_images(pages_chunk)
             for page_num, embedding in enumerate(torch.unbind(embedded_pages.cpu())):
                 embed_id = len(self._index_embeddings)
                 self._index_embeddings.append(embedding)
@@ -187,7 +168,7 @@ class MultiModalRAGModel:
         self.index_name = None
 
     def search(self, queries, top_k=3, with_scores=True):
-        embedded_queries = torch.unbind(self.embed_queries(queries).cpu())
+        embedded_queries = torch.unbind(self.vlm.embed_queries(queries).cpu())
         scores = self.processor.score(embedded_queries, self._index_embeddings)
         top_idx = scores.cpu().numpy().argsort()[0, -3:][::-1]
 
@@ -236,41 +217,119 @@ class MultiModalRAGModel:
         )
 
 
-def load_model_and_processor(
-    pretrained_model, device="cpu", attn_mode=None, dtype=torch.bfloat16
-):
-    if "colpali" in pretrained_model:
-        model_class = ColPali
-        processor_class = ColPaliProcessor
-    elif "colSmol" in pretrained_model:
-        model_class = ColIdefics3
-        processor_class = ColIdefics3Processor
-    elif "colQwen" in pretrained_model:
-        model_class = ColQwen2
-        processor_class = ColQwen2Processor
-    else:
-        raise ValueError(f"Unknown model {pretrained_model}")
+class QdrantMultiModalRAGModel:
 
-    model = model_class.from_pretrained(
-        pretrained_model_name_or_path=pretrained_model,
-        torch_dtype=dtype,
-        device_map=device,
-        attn_implementation=attn_mode,
-    ).eval()
-    processor = processor_class.from_pretrained(pretrained_model)
+    def __init__(self, vlm, client):
+        self.vlm = vlm
+        self.client = client
+        self.collection = None
 
-    return model, processor
+    def create_collection(
+        self,
+        collection_name,
+        on_disk_payload=True,
+        quantization_quantile=0.99,
+        quantization_always_ram=True,
+    ):
+        success = self.client.create_collection(
+            collection_name=collection_name,  # the name of the collection
+            on_disk_payload=on_disk_payload,  # store the payload on disk
+            optimizers_config=models.OptimizersConfigDiff(
+                indexing_threshold=100
+            ),  # it can be useful to swith this off when doing a bulk upload and then manually trigger the indexing once the upload is done
+            vectors_config=models.VectorParams(
+                size=self.vlm.dim,
+                distance=models.Distance.COSINE,
+                multivector_config=models.MultiVectorConfig(
+                    comparator=models.MultiVectorComparator.MAX_SIM
+                ),
+                quantization_config=models.ScalarQuantization(
+                    scalar=models.ScalarQuantizationConfig(
+                        type=models.ScalarType.INT8,
+                        quantile=quantization_quantile,
+                        always_ram=quantization_always_ram,
+                    ),
+                ),
+            ),
+        )
+        if success:
+            self.collection = collection_name
+        else:
+            print(f"There was an error creating the collection {collection_name}")
 
+    def choose_collection(self, collection_name):
+        if "paper_collection" not in [
+            x.name for x in self.client.get_collections().collections
+        ]:
+            raise ValueError(f"Collection {collection_name} does not exist.")
+        else:
+            self.collection = collection_name
 
-def process_doc(doc_path):
+    def upser_to_qdrant(self, batch):
+        try:
+            self.client.upsert(
+                collection_name=self.collection,
+                points=batch,
+                wait=False,
+            )
+        except Exception as e:
+            print(f"Error during upsert: {e}")
+            return False
+        return True
 
-    doc_path = Path(doc_path)
-    if doc_path.suffix.lower() == ".pdf":
-        images = convert_from_path(doc_path)
-        return images
+    def save_item(self, item, id=None, payload={}):
 
-    elif doc_path.suffix.lower() in [".jpg", ".jpeg", ".png", "bmp"]:
-        return [Image.open(doc_path)]
+        if id is None:
+            id = str(uuid4())
+        page_embedding = self.vlm.embed_images(item)[0].cpu().float().numpy().tolist()
+        point = models.PointStruct(
+            id=id,
+            vector=page_embedding,
+            payload=payload,
+        )
 
-    else:
-        raise ValueError(f"Unknown file type {doc_path.suffix}")
+        self.upsert_to_qdrant([point])
+
+    def save_document(self, doc, payload={}, batch_size=2):
+        pages = process_doc(doc)
+        num_pages = len(pages)
+        doc_points = []
+        for i in range(0, num_pages, batch_size):
+            batch = pages[i : i + batch_size]
+            batch_embedding = self.vlm.embed_images(batch)
+            for j, page_embedding in enumerate(
+                torch.unbind(batch_embedding.cpu().float())
+            ):
+                multivector = page_embedding.numpy().tolist()
+                doc_points.append(
+                    models.PointStruct(
+                        id=str(uuid4()),
+                        vector=multivector,
+                        payload={
+                            "doc_id": doc.name,
+                            "page_id": i + j + 1,
+                        },
+                    )
+                )
+
+        self.upsert_to_qdrant(doc_points)
+
+    def save_from_folder(self, folder_path, batch_size=2):
+        folder_path = Path(folder_path)
+        doc_files = list(folder_path.iterdir())
+        for doc_file in doc_files:
+            self.save_document(doc_file, batch_size=batch_size)
+
+    def list_items(self, limit=10):
+        return self.client.scroll(collection_name=self.collection, limit=limit)
+
+    def search(self, query, limit=5, timeout=60):
+        query_embedding = self.vlm.embed_queries([query])[0].cpu().numpy().tolist()
+        search_result = self.client.query_points(
+            collection_name=self.collection,
+            query=query_embedding,
+            limit=limit,
+            timeout=timeout,
+        )
+
+        return search_result
