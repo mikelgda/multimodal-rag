@@ -309,6 +309,7 @@ class QdrantMultiModalRAGModel:
         folder_path = Path(folder_path)
         doc_files = list(folder_path.iterdir())
         for doc_file in doc_files:
+            print(f"Saving doc {doc_file}")
             self.save_document(doc_file, batch_size=batch_size)
 
     def list_items(self, limit=10):
