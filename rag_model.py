@@ -2,16 +2,6 @@ from pathlib import Path
 from uuid import uuid4
 
 import torch
-from colpali_engine.models import (
-    ColIdefics3,
-    ColIdefics3Processor,
-    ColPali,
-    ColPaliProcessor,
-    ColQwen2,
-    ColQwen2Processor,
-)
-from pdf2image import convert_from_path
-from PIL import Image
 from qdrant_client import models
 
 from utils import process_doc
@@ -258,14 +248,14 @@ class QdrantMultiModalRAGModel:
             print(f"There was an error creating the collection {collection_name}")
 
     def choose_collection(self, collection_name):
-        if "paper_collection" not in [
+        if collection_name not in [
             x.name for x in self.client.get_collections().collections
         ]:
             raise ValueError(f"Collection {collection_name} does not exist.")
         else:
             self.collection = collection_name
 
-    def upser_to_qdrant(self, batch):
+    def upsert_to_qdrant(self, batch):
         try:
             self.client.upsert(
                 collection_name=self.collection,
@@ -324,7 +314,9 @@ class QdrantMultiModalRAGModel:
         return self.client.scroll(collection_name=self.collection, limit=limit)
 
     def search(self, query, limit=5, timeout=60):
-        query_embedding = self.vlm.embed_queries([query])[0].cpu().numpy().tolist()
+        query_embedding = (
+            self.vlm.embed_queries([query])[0].cpu().float().numpy().tolist()
+        )
         search_result = self.client.query_points(
             collection_name=self.collection,
             query=query_embedding,
