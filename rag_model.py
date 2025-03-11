@@ -281,6 +281,7 @@ class QdrantMultiModalRAGModel:
         self.upsert_to_qdrant([point])
 
     def save_document(self, doc, payload={}, batch_size=2):
+        doc = Path(doc)
         pages = process_doc(doc)
         num_pages = len(pages)
         doc_points = []
@@ -296,8 +297,8 @@ class QdrantMultiModalRAGModel:
                         id=str(uuid4()),
                         vector=multivector,
                         payload={
-                            "doc_id": doc.name,
-                            "page_id": i + j + 1,
+                            "doc_name": doc.as_posix(),
+                            "page_num": i + j + 1,
                         },
                     )
                 )
