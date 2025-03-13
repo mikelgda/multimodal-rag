@@ -4,8 +4,8 @@ from uuid import uuid4
 import torch
 from qdrant_client import models
 
-from utils import process_doc
-from vlm import VLM
+from .utils import process_doc
+from .vlm import VLM
 
 
 class SimpleMultiModalRAGModel:

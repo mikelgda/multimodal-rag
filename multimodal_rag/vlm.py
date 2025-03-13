@@ -1,7 +1,7 @@
 import torch
 from PIL import Image
 
-from utils import load_model_and_processor
+from .utils import load_model_and_processor
 
 
 class VLM:
