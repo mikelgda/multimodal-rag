@@ -209,10 +209,11 @@ class SimpleMultiModalRAGModel:
 
 class QdrantMultiModalRAGModel:
 
-    def __init__(self, vlm, client):
+    def __init__(self, vlm, client, save_docs=False):
         self.vlm = vlm
         self.client = client
         self.collection = None
+        self.save_docs = save_docs
 
     def create_collection(
         self,
@@ -291,15 +292,16 @@ class QdrantMultiModalRAGModel:
             for j, page_embedding in enumerate(
                 torch.unbind(batch_embedding.cpu().float())
             ):
+                payload = {
+                    "doc_name": doc.as_posix(),
+                    "page_num": i + j + 1,
+                }
+                if self.save_docs:
+                    payload["doc"] = pages[j]
                 multivector = page_embedding.numpy().tolist()
                 doc_points.append(
                     models.PointStruct(
-                        id=str(uuid4()),
-                        vector=multivector,
-                        payload={
-                            "doc_name": doc.as_posix(),
-                            "page_num": i + j + 1,
-                        },
+                        id=str(uuid4()), vector=multivector, payload=payload
                     )
                 )
 
