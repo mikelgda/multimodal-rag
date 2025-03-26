@@ -209,11 +209,19 @@ class SimpleMultiModalRAGModel:
 
 class QdrantMultiModalRAGModel:
 
-    def __init__(self, vlm, client, save_docs=False):
+    def __init__(self, vlm, client, save_docs_path=None):
         self.vlm = vlm
         self.client = client
         self.collection = None
-        self.save_docs = save_docs
+        if save_docs_path is not None:
+            save_docs_path = Path(save_docs_path)
+            if save_docs_path.exists():
+                print(
+                    f"WARNING: the path {save_docs_path} already exits. Data may be overwritten."
+                )
+            else:
+                save_docs_path.mkdir(parents=True)
+        self.save_docs_path = save_docs_path
 
     def create_collection(
         self,
@@ -272,6 +280,8 @@ class QdrantMultiModalRAGModel:
 
         if id is None:
             id = str(uuid4())
+            while self.item_id_exists(id):
+                id = str(uuid4())
         page_embedding = self.vlm.embed_images(item)[0].cpu().float().numpy().tolist()
         point = models.PointStruct(
             id=id,
@@ -293,16 +303,17 @@ class QdrantMultiModalRAGModel:
                 torch.unbind(batch_embedding.cpu().float())
             ):
                 payload = {
-                    "doc_name": doc.as_posix(),
+                    "doc_name": doc.name,
                     "page_num": i + j + 1,
                 }
-                if self.save_docs:
-                    payload["doc"] = pages[j]
+                id = str(uuid4())
+                while self.item_id_exists(id):
+                    id = str(uuid4())
+                if self.save_docs_path is not None:
+                    pages[i + j].save(self.save_docs_path / f"{id}.jpg")
                 multivector = page_embedding.numpy().tolist()
                 doc_points.append(
-                    models.PointStruct(
-                        id=str(uuid4()), vector=multivector, payload=payload
-                    )
+                    models.PointStruct(id=id, vector=multivector, payload=payload)
                 )
 
         self.upsert_to_qdrant(doc_points)
@@ -315,7 +326,7 @@ class QdrantMultiModalRAGModel:
             self.save_document(doc_file, batch_size=batch_size)
 
     def list_items(self, limit=10):
-        return self.client.scroll(collection_name=self.collection, limit=limit)
+        return self.client.scroll(collection_name=self.collection, limit=limit)[0]
 
     def search(self, query, limit=5, timeout=60):
         query_embedding = (
@@ -329,3 +340,7 @@ class QdrantMultiModalRAGModel:
         )
 
         return search_result
+
+    def item_id_exists(self, id):
+
+        return bool(self.client.retrieve(self.collection, ids=[id]))

@@ -1,4 +1,5 @@
 import torch
+from colpali_engine.compression.token_pooling import HierarchicalTokenPooler
 from PIL import Image
 
 from .utils import load_model_and_processor
@@ -13,6 +14,7 @@ class VLM:
         device="cpu",
         attn_mode=None,
         dtype=torch.bfloat16,
+        pool_factor=0,
     ):
         instance = cls()
 
@@ -24,6 +26,13 @@ class VLM:
         instance.device = device
         instance.attn_mode = attn_mode
         instance.dtype = dtype
+        instance.pool_factor = pool_factor
+        instance.pool_tokens = bool(pool_factor)
+
+        if instance.pool_tokens:
+            instance.token_pooler = HierarchicalTokenPooler(pool_factor=pool_factor)
+        else:
+            instance.token_pooler = None
 
         return instance
 
@@ -48,5 +57,12 @@ class VLM:
         with torch.inference_mode():
             processed_images = self.processor.process_images(images).to(self.device)
             embedded_images = self.model(**processed_images)
+
+        if self.pool_tokens:
+            embedded_images = self.token_pooler.pool_embeddings(
+                embedded_images,
+                padding=True,
+                padding_side=self.processor.tokenizer.padding_side,
+            )
 
         return embedded_images
