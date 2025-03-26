@@ -39,9 +39,9 @@ Has triangulene been synthesized on-surface?
 What is the relation between the bias voltage in triangulene (TNS) and its conductance?
 @
 # 9
-What are iron based superconductors? Give a list of examples.
-Do iron-based superconductors have surface Dirac cones?
-What are the atomic orbitals involved in the band inversion in Fe(Te,Se)?
+What is the main nuclear reaction for silicon (Si) used in neutron activation analysis?
+What is typical behavior of the nuetron flux from a compact source with respect to distance to the source?
+What are the fusion reactions used to obtain neutrons in the NILE laboratory?
 @
 # 10
 What are the crystal structure parameters of alpha-RuCl3?
