@@ -7,6 +7,8 @@ from colpali_engine.models import (
     ColPali,
     ColPaliProcessor,
     ColQwen2,
+    ColQwen2_5,
+    ColQwen2_5_Processor,
     ColQwen2Processor,
 )
 from pdf2image import convert_from_path
@@ -22,7 +24,10 @@ def load_model_and_processor(
     elif "colSmol" in pretrained_model:
         model_class = ColIdefics3
         processor_class = ColIdefics3Processor
-    elif "colQwen" in pretrained_model:
+    elif "colqwen2.5" in pretrained_model:
+        model_class = ColQwen2_5
+        processor_class = ColQwen2_5_Processor
+    elif "colqwen" in pretrained_model:
         model_class = ColQwen2
         processor_class = ColQwen2Processor
     else:
