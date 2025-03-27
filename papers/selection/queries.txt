@@ -1,0 +1,105 @@
+# 1
+What crystal magnetic structure does EuCuAs have?
+What are the estimated exchange parameters for EuCuAs?
+Can the magnetic behavior of EuCuAs be described by a spin Hamiltonian?
+@
+# 2
+How is the superconductivity measured in a graphene superlattice?
+Explain what is the interplay between metal, Mott and superconductor phases in magic angle TBG.
+Explain how superconductivity changes in magic angle TBG with respect to carrier density.
+@
+# 3
+How can the resistance of a normal and chiral conductor be modeled as a circuit component?
+What is the angular dependence of the electronic magnetochiral anisotropy (eMChA) in CsV3Sb5?
+What is the temperature dependence of the electronic magnetochiral anisotropy (eMChA) in CsV3Sb5?
+@
+# 4
+Explain the architecture in terms of qubits and adjustable copuplers of the Sycamore processor.
+Explain what kind of control operations were used in the quantum supremacy circuits.
+What is the speed-up gained by using a quantum processor instead of an equal-fidelity classical sampling algorithm?
+@
+# 5
+What is the effect of spin-orbit coupling (SOC) in WTe2?
+How are WTe2 samples usually characterized with ARPES?
+Explain the role of band inversions in the topological phase transition of WTe2.
+@
+# 6
+What is the atomic structure of Fe3GeTe2 and how long are the lattice vectors. What are the atomic positions?
+How are Wilson loops used to characterize the nodal lines in Fe3GeTe2?
+Is there any relationship between the number of Weyl points and the absolute anomalous Hall conductivity (AHC) in Fe3GeTe2?
+@
+# 7
+What are diffuse scattering maps in the context of crystalline materials?
+What is the unit cell of CsVe3Sb5 and the space group?
+Can diffuse scattering and inleastic x-ray scattering (IXS) be used to analyze phonons?
+@
+# 8
+How does a triangulene nanostar look like?
+Has triangulene been synthesized on-surface?
+What is the relation between the bias voltage in triangulene (TNS) and its conductance?
+@
+# 9
+What are iron based superconductors? Give a list of examples.
+Do iron-based superconductors have surface Dirac cones?
+What are the atomic orbitals involved in the band inversion in Fe(Te,Se)?
+@
+# 10
+What are the crystal structure parameters of alpha-RuCl3?
+Explain the change in magnetic susceptibility of alpha-RuCl3 with respect to temperature.
+What is the magnetic phase diagram for alpha-RuCl3 in terms of the magnetic field and temperature?
+@
+# 11
+Is the MAPbI3 Cubic or orthorhombic at a temperature of 350K?
+Explain the experimental phase diagram of MAPbI3 in terms of pressure and temperature.
+At what temperature does the triple point occur in the density of the MAPbI3 compound?
+@
+# 12
+How do the Raman modes of PEA2MnCl4 vary with the temperature?
+How does th magnetization M of the Co2+ atoms vary in EDACoCl4 with respect to temperature?
+What is the Neel tempearture of PEA2MnCL4?
+@
+# 13
+How many enforced semimetals are there for the compounds with magnetic space group (MSG) 51.298?
+Does the crystal MNGeO3 have surface states?
+Give examples of metallic iron pnictides.
+@
+# 14
+At what pressure does FeSe transition from a tetragonal to a nematic state?
+Does FeSe support a spin density wave (SDW) at any pressure or temperature?
+Describe the quantum oscillations in FeSe and their evolution with pressure.
+@
+# 15
+What symmetries can protect corner charge fractionalization?
+How do the Brillouin zones of C2, C4 and C3 symmetric crystals?
+What are the maximal Wyckoff positions for unit cells with rotational symmetry C2, C4, C3 and C6?
+@
+# 16
+Describe the magneto-optical response of permallow nanoantennas.
+What is the mechanisms that drives a large magneto-optical enhacement in plasmonic nanocavities?
+How do they measure the magneto-optical activity of arrays of plasmonic nanoantennas?
+@
+# 17
+How does the charge transfer vary in NbSe2 as a function of interalyer distance in T/H bilayers?
+What are the different charge density wave (CWD) phases hosted by transition metal dichalcogenides?
+How does the charge transfer vary with the Hubbard U parameter in TaS2?
+@
+# 18
+How can a supercell modulation be used in a photonic crystal to induce a topological phase transition?
+How are axion insulators (AXI) characterized in terms of topology?
+What is the expression of the permittivity tensor in a gyroelectric medium with an external magnetic field?
+@
+# 19
+What is the adsorption energy for a Co hexamer?
+What kind of material is graphdyine and what is BGDY?
+How can adsoprtion of transition metal atoms on BDGY be modeled?
+@
+# 20
+How are nodes and edges represented in a graph neural network?
+Give me an example architecture of a graph neural network used to predict physical properties of crystals and describe the internal architecture.
+How does the volume in training data affect graph neural networks?
+
+
+
+
+
+
