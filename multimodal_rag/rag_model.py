@@ -280,8 +280,6 @@ class QdrantMultiModalRAGModel:
 
         if id is None:
             id = str(uuid4())
-            while self.item_id_exists(id):
-                id = str(uuid4())
         page_embedding = self.vlm.embed_images(item)[0].cpu().float().numpy().tolist()
         point = models.PointStruct(
             id=id,
@@ -307,8 +305,6 @@ class QdrantMultiModalRAGModel:
                     "page_num": i + j + 1,
                 }
                 id = str(uuid4())
-                while self.item_id_exists(id):
-                    id = str(uuid4())
                 if self.save_docs_path is not None:
                     pages[i + j].save(self.save_docs_path / f"{id}.jpg")
                 multivector = page_embedding.numpy().tolist()
