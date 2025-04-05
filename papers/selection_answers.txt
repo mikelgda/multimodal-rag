@@ -1,10 +1,6 @@
-
 # 1
 EuCuAs is described by the centrosymmetric P63/mmc space group with a hexaognal unit cell. It has an A-type or DP-type antiferromagnetic order or a helical spin arrangement.
--.-
-The estimated exchange and anisotropy parameters (in meV) for EuCuAs are:\n\nFor τ = 0.42: J0 = – 0.021, J1 = -0.021, J2 = 0.009, D is not specified
-For τ = 0.59: J0 = 0.060(3), J1 = -0.0077, J2 = -0.0069, D = 0.011
--.-
+The estimated exchange and anisotropy parameters (in meV) for EuCuAs are:\n\nFor τ = 0.42: J0 = – 0.021, J1 = -0.021, J2 = 0.009, D is not specified. For τ = 0.59: J0 = 0.060(3), J1 = -0.0077, J2 = -0.0069, D = 0.011
 Yes, the magnetic behavior of EuCuAs can be described by a spin Hamiltonian because the spins on Eu are large (S = 7/2) and localized.
 @
 # 2

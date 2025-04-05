@@ -173,3 +173,5 @@ cython_debug/
 .pypirc
 .DS_Store
 api.py
+.deepeval_telemetry.txt
+.deepeval-cache.json

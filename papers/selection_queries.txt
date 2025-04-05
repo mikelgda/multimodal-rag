@@ -97,9 +97,4 @@ How can adsoprtion of transition metal atoms on BDGY be modeled?
 How are nodes and edges represented in a graph neural network?
 Give me an example architecture of a graph neural network used to predict physical properties of crystals and describe the internal architecture.
 How does the volume in training data affect graph neural networks?
-
-
-
-
-
-
+@
