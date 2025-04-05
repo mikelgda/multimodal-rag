@@ -1,0 +1,103 @@
+
+# 1
+EuCuAs is described by the centrosymmetric P63/mmc space group with a hexaognal unit cell. It has an A-type or DP-type antiferromagnetic order or a helical spin arrangement.
+-.-
+The estimated exchange and anisotropy parameters (in meV) for EuCuAs are:\n\nFor τ = 0.42: J0 = – 0.021, J1 = -0.021, J2 = 0.009, D is not specified
+For τ = 0.59: J0 = 0.060(3), J1 = -0.0077, J2 = -0.0069, D = 0.011
+-.-
+Yes, the magnetic behavior of EuCuAs can be described by a spin Hamiltonian because the spins on Eu are large (S = 7/2) and localized.
+@
+# 2
+Superconductivity is measured using a four-probe measurement scheme with voltage probes (Vxx, Vg), current (I), and bias voltage (Vbias). The electron density is tuned by a metal gate beneath the bottom hexagonal boron nitride layer.
+In magic-angle TBG, superconductivity is achieved when the material is dopded slighlty away from the Mott insulator phase. 
+The phase diagram, which depends on carrier density and temperature, shows two superconducting domes at low temperature separated by a Mott phase. Above the critical temperature, the superconducting phase becomes a metal.
+@
+# 3
+A normal conductor can me modeled as a resistance with $R(B) = R_0(1+\mu^2 B^2)$ and a chiral conductor is represented as a resistance with a coil such that $R(I,B) = R_0(1+\mu^2 B^2 + \gamma B\cdot I)$.
+The second harmonic response $V_{2\omega}$ shows a sudden sign reversal withing 0.5º when the current is applied along the c axis ($I||c$).
+The sudden sign reversal in the second harmonic response $V_{2\omega}$ is less pronounced with increasing temperature.
+@
+# 4
+The sycamore processor has 54 qubits in a rectangular array, each one coupled to its four nearest neighbors.
+The experiment uses three kinds of single-qubit gates: $\sqrt{X}$, $\sqrt{Y}$ and $\sqrt{W}$, where $W=(X+Y)/\sqrt{2}$.
+For $m=20$ number of cycles and $n=53$ qubits, obtaining a million samples on the quantum processor takes 200 seconds, whereas an equal-fidelity classical sampling would take 10,000 years on a million cores.
+@
+# 5
+Strong SOC lifts the degeneracy at the Dirac point, opening a bulk bandgap in 1T'-WTe2 around the $\Gamma$ point.
+ARPES is used to measure the band dispersion along high-symmetry paths such as $\Gamma - Y$ by measuring the photoemission spectrum.
+The lattice distortion from the 1T phase to the 1T' phase induces band inversion, causing 1T'-WTe2 to become topologically non-trivial. Without spin-orbit coupling (SOC), the inverted bands cross at a momentum point along the 0 – Y direction, forming a Dirac cone. Strong SOC lifts the degeneracy at the Dirac point, opening a bulk bandgap. In 1T-WTe2, the bands from 5dxz and 5dz2 orbitals of W are separated. Due to the symmetry breaking through the lattice distortion from 1T to 1T', these orbitals hybridize substantially. The dz2 orbital is lowered below EF whereas the dxz orbital lifts in the opposite direction near the 0 point. Because these two inverted bands have different parities at the 0 point, the Z2 invariant v, in which (-1)v is determined by the product of all occupied.
+@
+# 6
+Fe3GeTe2 has a hexagonal layered structure formed by slabs of Fe3Ge lying between layers of Te bound by weak van der Waals forces, with the symmetry of space group 194. The $a_1$ and $a_2$ vectors are 3.911 Angstroms long, and the $a_3$ vector is 16.33$
+Wilson loops can be used to identify symmetry-protected topological nodal lines because their trace is quantized and experiences a $\pi$ jump when intersecting them. The value of the Wilson loop trace can be used to predict the presence of surface drumhead states.
+The number of Weyl points at a chemical potential can be related to a change in absolute AHC, since the contribution of their Berry curvature is unloccked when filled. Their effect can be either to suppress or enhance the AHC.
+@
+# 7
+Diffuse scattering maps are a technique to analyze the crystalline structure of materials. It can also be used to study the phonon properties and the appearance of charge density waves (CDW).
+CsV3Sb5 has the symmetry of space group P6/mmm. The unit cell is described as individual sublattices of a kagome netwwork of V coordinated by Sb1 atoms and a hexagonal net of Sb2 above and below each kagome layer.
+Yes. Diffuse scattering can be used to analyze the phonon properties of crystals, such as the freezing of specific modes and lattice instabilities. IXS can be used to measure the low-energy phonon spectrum.
+@
+# 8
+A triangulene-based nanostar (TNS) consists of six [3]triangulene moieties arranged in a macrocycle, forming a star shape with a pore size of 1.2 nm.
+Yes, triangulene has been synthesized on-surface.
+The conductance shows a dip at zero bias voltage and bias-symmetric step-like features which are characteristic of spin excitation induced by inelastic electron tunneling.
+@
+# 9
+The main nuclear reaction for Si detection in neutron-activation analysis is 28Si(n,p)28Al, which has a half-life of 2.24 minutes.
+The neutron flux diminishes with the square of distance from the sample to the source.
+They generate a plasma gas using a microwave-driven Electron-Cyclotron Resonance (ECR) source to ionize deuterium (D-D  source), or a mix of deuterium and tritium (D-T source). The ions generated in the plasma are accelerated towards a metallic target using a high-voltage  electric  field,  where  they  are  implanted  in  the  form  of  a  metal  hydride.  The remaining  ions  in  the  plasma  strike  the  previously  implanted  ones  in  the  target  leading  to fusion  events  that  release  monoenergetic  neutrons  of  14  or  2.5  MeV for  the  D-T  and  D-D sources, respectively.
+@
+# 10
+The symmetry is of space group C2/m with $Z=4$ atoms in the unit cell. The $a,b,c$ axes measure 5.9762, 10.342 and 6.013 Angstrom respectively. The $\alpha,\beta,\gamma$ angles are 90, 108.87 and 80 degrees.
+The magnetic susceptibility $\chi$ increases from 0 to 13K (the critical temperature) and then decreases linearly with increasing temperature.
+Below a magnetic field of approximately 8T, the systems shows a zig-zag AFM configuration up to around 14K. For a higher magnetic field or higher temperature, the system is paramagnetic.
+@
+# 11
+The MAPbI3 is cubic at 350K up to approximately 0.5 GPa of pressure. For higher pressures, it is in a HPC phase.
+At low temperature, below 150K, it is orthorhombic. At low pressure, it becomes tetragonal and then cubic for increasing temperature. At pressures above 1GPa, it goes into a HPC phase for temperatures higher than 150K, approximately.
+The triple point happens at 175K for a pressure of 1kbar.
+@
+# 12
+The position of the peak of some Raman modes in  PEA2MnCl4 tends to move left (to lower values of the wavelength) with increasing temperature.
+The magnetization increasing from 0K and peaks at approximately 13K, the it decreases expontentially.
+The Néel temperature of PEA2MnCl4 is approximately 47K.
+@
+# 13
+There are 0 or 1 enforced semimetals with the magnetic space group symmetry of 51.298, depending on the value of the U parameter.
+MnGeO3 is a Diract semimetal and therefore it has no surface states.
+Some metallic iron pnictides are LaFeAsO, CaFe2As2, EuFe2As2, BaFe2As2 and CaFe4As3, among others.
+@
+# 14
+The critical pressure of transition from a tetragonal to a nematic state is 5.8kbar.
+No, the spin-density wave (SDW) phase only exists for some ranges of pressure and temperature, approximately from 30 to 80kbar and from 0 to 40K.
+At low pressures in the nematic state, there is a low-frequency oscillation which disappears beyond 4,7kbar. At high pressure and high magnetic field, there is a high-frequency oscillation.
+@
+# 15
+Charge fractionalization can be protected by C2, C3, C4 and C6 symmetries.
+For C2 and C4 symmetries, the Brillouin zones look like squares. For C3, it looks like an hexagon.
+The maximal Wyckoff positions for C2-symmetry crystals are 1a, 1b, 1c and 1d.
+@
+# 16
+The magneto-optical activity (MOA) of Non-concentric ring-disk (NCRD) nanoantennas shows a high peak at the wavelength of the plasmon resonance in the gold ring.
+What is the mechanisms that drives a large magneto-optical enhacement in plasmonic nanocavities?
+They use a magneto-optical Kerr effect spectrometer consisting of a broadband supercontinuum tunable laser, polarizing and focusing optics, a photoelastic modulator and a photodector.
+@
+# 17
+The charge transfer diminishes rapidly as a function of increasing interalyer distance.
+The heterostructures show a $\sqrt{13}\times\sqrt{13}$ CDW with a Star of David shape.
+The charge transfer increases slowly with U from 0 to 1 and then jump from 1 to 2. Then it increases slowly again.
+@
+# 18
+The supercell modulation can be used to coupled Weyl nodes and induce a topological gap with non-zero Chern number.
+Axion insulators (AXIs) are characterized by the quantization of their electromagnetic coupling term, the topological θ-angle.
+The permittivity tensor has off-diagonal imaginary components $i\eta_z$ when the magnetic field $H_z$ is directed along z.
+@
+# 19
+The adsoprtion energy is 4.12 eV.
+Graphdiyne (GDY) is a synthetic carbon allotrope with a layered framework formed by benzoic rings connected by carbon chains. Boron-graphdiyne (BGDY) is a member of the GDY family where single boron atoms replace the hexagonal carbon rings in the GDY lattice, forming a 2D honeycomb lattice with large hexagonal holes.
+Adsorption of transition metal atoms on BGDY can be modeled using density functional theory.
+@
+# 20
+Nodes and edges are both represented by feature vectors.
+One example of a graph neural network architecture used to predict the physical properties of crystals is the Crystal Graph Convolutional Neural Network (CGCNN). In this architecture, the distance between atoms is used to represent the edges in the crystal graph. The nodes represent atoms. The graph retains the information of the topological and geometric structure of crystals and records the periodicity and key crystal information, such as the crystal lattice vector and the cell volume.
+The mean absolute error of the network predictions decreases with a higher volume of trianing data. The decrease is larger for lower volumes of data and less pronounced as training set size increases beyond 10000 samples.

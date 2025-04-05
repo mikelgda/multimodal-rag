@@ -34,7 +34,7 @@ What is the unit cell of CsVe3Sb5 and the space group?
 Can diffuse scattering and inleastic x-ray scattering (IXS) be used to analyze phonons?
 @
 # 8
-How does a triangulene nanostar look like?
+What does a triangulene nanostar look like?
 Has triangulene been synthesized on-surface?
 What is the relation between the bias voltage in triangulene (TNS) and its conductance?
 @
@@ -56,7 +56,7 @@ At what temperature does the triple point occur in the density of the MAPbI3 com
 # 12
 How do the Raman modes of PEA2MnCl4 vary with the temperature?
 How does th magnetization M of the Co2+ atoms vary in EDACoCl4 with respect to temperature?
-What is the Neel tempearture of PEA2MnCL4?
+What is the Neel tempearture of PEA2MnCl4?
 @
 # 13
 How many enforced semimetals are there for the compounds with magnetic space group (MSG) 51.298?
@@ -70,17 +70,17 @@ Describe the quantum oscillations in FeSe and their evolution with pressure.
 @
 # 15
 What symmetries can protect corner charge fractionalization?
-How do the Brillouin zones of C2, C4 and C3 symmetric crystals?
-What are the maximal Wyckoff positions for unit cells with rotational symmetry C2, C4, C3 and C6?
+What do the Brillouin zones of C2, C4 and C3 symmetric crystals look like?
+What are the maximal Wyckoff positions for unit cells with rotational symmetry C2?
 @
 # 16
-Describe the magneto-optical response of permallow nanoantennas.
+Describe the magneto-optical response of permalloy nanoantennas.
 What is the mechanisms that drives a large magneto-optical enhacement in plasmonic nanocavities?
 How do they measure the magneto-optical activity of arrays of plasmonic nanoantennas?
 @
 # 17
 How does the charge transfer vary in NbSe2 as a function of interalyer distance in T/H bilayers?
-What are the different charge density wave (CWD) phases hosted by transition metal dichalcogenides?
+What is the charge density wave (CDW) in heterostructures of T and H transition metal dichalcogenides?
 How does the charge transfer vary with the Hubbard U parameter in TaS2?
 @
 # 18
