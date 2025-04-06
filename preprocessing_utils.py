@@ -58,6 +58,10 @@ def load_answers(path):
     return answers
 
 
+def escape_backlashes(text):
+    return re.sub(r"\\(?![nt])", r"\\", text)
+
+
 def create_dataset(rag_chain, queries, answers, delay=70, batch_size=15):
     from time import sleep
 
@@ -65,10 +69,11 @@ def create_dataset(rag_chain, queries, answers, delay=70, batch_size=15):
     rpm = 0
     for doc_queries, doc_answers in zip(queries, answers):
         for query, answer in zip(doc_queries, doc_answers):
+            llm_response = rag_chain.invoke({"input": query})["answer"]
             test_case = LLMTestCase(
                 input=query,
                 expected_output=answer,
-                actual_output=rag_chain.invoke({"input": query})["answer"],
+                actual_output=escape_backlashes(llm_response),
             )
             rpm += 1
             test_cases.append(test_case)
