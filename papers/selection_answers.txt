@@ -97,3 +97,4 @@ Adsorption of transition metal atoms on BGDY can be modeled using density functi
 Nodes and edges are both represented by feature vectors.
 One example of a graph neural network architecture used to predict the physical properties of crystals is the Crystal Graph Convolutional Neural Network (CGCNN). In this architecture, the distance between atoms is used to represent the edges in the crystal graph. The nodes represent atoms. The graph retains the information of the topological and geometric structure of crystals and records the periodicity and key crystal information, such as the crystal lattice vector and the cell volume.
 The mean absolute error of the network predictions decreases with a higher volume of trianing data. The decrease is larger for lower volumes of data and less pronounced as training set size increases beyond 10000 samples.
+@
