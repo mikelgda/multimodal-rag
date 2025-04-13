@@ -10,7 +10,7 @@ The phase diagram, which depends on carrier density and temperature, shows two s
 @
 # 3
 A normal conductor can me modeled as a resistance with $R(B) = R_0(1+\mu^2 B^2)$ and a chiral conductor is represented as a resistance with a coil such that $R(I,B) = R_0(1+\mu^2 B^2 + \gamma B\cdot I)$.
-The second harmonic response $V_{2\omega}$ shows a sudden sign reversal withing 0.5º when the current is applied along the c axis ($I||c$).
+The second harmonic response $V_{2\omega}$ shows a sudden sign reversal within 0.5º when the current is applied along the c axis ($I||c$).
 The sudden sign reversal in the second harmonic response $V_{2\omega}$ is less pronounced with increasing temperature.
 @
 # 4
@@ -75,7 +75,7 @@ The maximal Wyckoff positions for C2-symmetry crystals are 1a, 1b, 1c and 1d.
 @
 # 16
 The magneto-optical activity (MOA) of Non-concentric ring-disk (NCRD) nanoantennas shows a high peak at the wavelength of the plasmon resonance in the gold ring.
-What is the mechanisms that drives a large magneto-optical enhacement in plasmonic nanocavities?
+The large magneto-optical enhancement in plasmonic nanocavities is driven by the hybridization with multipolar dark modes in specially designed magnetoplasmonic nanocavities. The broken geometrical symmetry enables coupling with free-space light and hybridization of the multipolar dark modes of a plasmonic ring nanoresonator with the dipolar localized plasmon resonance of the ferromagnetic disk placed inside the ring. This hybridization results in a low-radiant multipolar Fano resonance that drives a strongly enhanced magneto-optically induced localized plasmon.
 They use a magneto-optical Kerr effect spectrometer consisting of a broadband supercontinuum tunable laser, polarizing and focusing optics, a photoelastic modulator and a photodector.
 @
 # 17

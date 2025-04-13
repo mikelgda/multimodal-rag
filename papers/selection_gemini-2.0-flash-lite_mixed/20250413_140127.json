@@ -1,7 +1,7 @@
 [
     {
         "input": "What crystal magnetic structure does EuCuAs have?",
-        "actual_output": "EuCuAs has a planar helix magnetic structure with a period of approximately four Eu layers. The magnetic space group of the helical structure with τ = 0.5 is Cc2 (#5.16 in the Opechowski–Guccione (OG) setting). The magnetic propagation vector for this structure is qm ¼ ð0; 0;1/2Þ, which means the unit cell doubles along the crystal c axis.",
+        "actual_output": "EuCuAs exhibits a helical spin arrangement in zero field. This magnetic structure has a magnetic propagation vector of qm = (0, 0, τ), indicating an incommensurate period along the c axis. The spins lie in the ab plane and rotate around the c axis from layer to layer.",
         "expected_output": "EuCuAs is described by the centrosymmetric P63/mmc space group with a hexaognal unit cell. It has an A-type or DP-type antiferromagnetic order or a helical spin arrangement.",
         "retrieval_context": null,
         "context": null,
@@ -9,7 +9,7 @@
     },
     {
         "input": "What are the estimated exchange parameters for EuCuAs?",
-        "actual_output": "The estimated exchange and anisotropy parameters (in meV) for EuCuAs are given in Table 1. For a sample with τ = 0.59, the parameters are: J0 = 0.060(3), J1 = -0.0077, J2 = -0.0069, and D = 0.011. For a sample with τ = 0.42 the parameters are: J0 is not specified, J1 = -0.021, J2 = -0.021 and D = 0.009.",
+        "actual_output": "The estimated exchange parameters for EuCuAs are provided in Table 1.  The parameters include J0, J1, J2, and D, with varying values depending on the incommensurate propagation vector τ. J0 was experimentally determined for the sample with τ = 0.59.",
         "expected_output": "The estimated exchange and anisotropy parameters (in meV) for EuCuAs are:\\n\\nFor τ = 0.42: J0 = – 0.021, J1 = -0.021, J2 = 0.009, D is not specified. For τ = 0.59: J0 = 0.060(3), J1 = -0.0077, J2 = -0.0069, D = 0.011",
         "retrieval_context": null,
         "context": null,
@@ -17,7 +17,7 @@
     },
     {
         "input": "Can the magnetic behavior of EuCuAs be described by a spin Hamiltonian?",
-        "actual_output": "Yes, the magnetic behavior of EuCuAs can be described by an approximate spin Hamiltonian because the spins on Eu are large (S = 7/2) and localized. A semiclassical mean-field treatment should account for the static magnetic behavior. The ground state magnetic structure obtained from this is a planar helix with a turn-angle between spins.",
+        "actual_output": "Yes, the magnetic behavior of EuCuAs can be described using a spin Hamiltonian. The Hamiltonian includes terms for exchange interactions and anisotropy. The simplest models are based on the Hamiltonian: $H = \\sum_{<ij>} J_{ij} S_i \\cdot S_j + D(S_i^z)^2 + g\\mu_B S_i \\cdot B$.",
         "expected_output": "Yes, the magnetic behavior of EuCuAs can be described by a spin Hamiltonian because the spins on Eu are large (S = 7/2) and localized.",
         "retrieval_context": null,
         "context": null,
@@ -25,7 +25,7 @@
     },
     {
         "input": "How is the superconductivity measured in a graphene superlattice?",
-        "actual_output": "Superconductivity in a graphene superlattice is measured using a four-probe scheme. The stack consists of hexagonal boron nitride on the top and bottom, with two graphene bilayers twisted relative to each other in between. The electron density is tuned by a metal gate beneath the bottom hexagonal boron nitride layer.",
+        "actual_output": "Superconductivity in graphene superlattices is measured by observing zero-resistance states. This is achieved by electrostatic doping away from correlated insulating states. The critical temperature of the graphene superlattice is up to 1.7 kelvin.",
         "expected_output": "Superconductivity is measured using a four-probe measurement scheme with voltage probes (Vxx, Vg), current (I), and bias voltage (Vbias). The electron density is tuned by a metal gate beneath the bottom hexagonal boron nitride layer.",
         "retrieval_context": null,
         "context": null,
@@ -33,7 +33,7 @@
     },
     {
         "input": "Explain what is the interplay between metal, Mott and superconductor phases in magic angle TBG.",
-        "actual_output": "In magic-angle twisted bilayer graphene (TBG), the interplay between metal, Mott-like insulating state, and superconductor phases is observed. The flat bands near charge neutrality lead to a Mott-like insulating state. Superconductivity is observed in multiple devices with slightly different twist angles, typically near the Mott-like state, with a critical temperature of up to 1.7 K.",
+        "actual_output": "In magic-angle TBG, the interplay between metal, Mott, and superconductor phases is observed by tuning temperature, magnetic field, and carrier density.  At zero magnetic field, the system transitions from a metal to a superconductor at low temperatures.  A Mott-like insulating phase is present near half-filling, and a strong magnetic field can suppress this insulating phase, leading to a metallic state.",
         "expected_output": "In magic-angle TBG, superconductivity is achieved when the material is dopded slighlty away from the Mott insulator phase.",
         "retrieval_context": null,
         "context": null,
@@ -41,7 +41,7 @@
     },
     {
         "input": "Explain how superconductivity changes in magic angle TBG with respect to carrier density.",
-        "actual_output": "In magic-angle TBG, superconductivity appears at low temperatures with a small gate voltage, corresponding to a minimal density of only $1.2 \\times 10^{12} cm^{-2}$ from charge neutrality. The critical temperature $T_c$ is calculated using a resistance of 50% of the 'normal'-state resistance. Two superconducting domes are observed next to the half-filling state.",
+        "actual_output": "In magic-angle TBG, superconductivity exhibits a dome-shaped region in the phase diagram with respect to carrier density. The critical temperature, $T_c$, is tunable by electrostatic doping.  Quantum oscillations indicate small Fermi surfaces near the correlated insulating states.",
         "expected_output": "The phase diagram, which depends on carrier density and temperature, shows two superconducting domes at low temperature separated by a Mott phase. Above the critical temperature, the superconducting phase becomes a metal.",
         "retrieval_context": null,
         "context": null,
@@ -49,7 +49,7 @@
     },
     {
         "input": "How can the resistance of a normal and chiral conductor be modeled as a circuit component?",
-        "actual_output": "The resistance of a normal conductor in the presence of a magnetic field can be modeled as $R(B) = R_0(1 + P^2B^2)$. For a chiral conductor, the resistance in the presence of both a magnetic field and current can be modeled as $R(I, B) = R_0(1 + P^2B^2 + \\gamma B \\cdot I)$, where $\\gamma$ is the coupling constant. In this model, the terms account for the even-in-current and odd-in-current contributions to the resistivity.",
+        "actual_output": "The resistance of a normal conductor can be modeled as  $R(B) = R_0(1 + P^2B^2)$, while the resistance of a chiral conductor can be modeled as $R(I,B) = R_0(1 + P^2B^2 + \\gamma B \\cdot I)$. These equations show how the resistance changes depending on the magnetic field (B) and current (I) and the material's properties. The chiral conductor's resistance is also affected by the dot product of the magnetic field and current.",
         "expected_output": "A normal conductor can me modeled as a resistance with $R(B) = R_0(1+\\mu^2 B^2)$ and a chiral conductor is represented as a resistance with a coil such that $R(I,B) = R_0(1+\\mu^2 B^2 + \\gamma B\\cdot I)$.",
         "retrieval_context": null,
         "context": null,
@@ -57,7 +57,7 @@
     },
     {
         "input": "What is the angular dependence of the electronic magnetochiral anisotropy (eMChA) in CsV3Sb5?",
-        "actual_output": "The magnetoresistance of CsV3Sb5 is approximately linear in $B$ for small angles $\\theta$ at high magnetic fields. The eMChA signal becomes significant only at temperatures below $T' \\approx 35 K$, deep within the charge-ordered state of CsV3Sb5 ($T_{CDW} \\approx 94 K$). eMChA is only relevant in the interplane transport.",
+        "actual_output": "The angular dependence of the electronic magnetochiral anisotropy (eMChA) in CsV3Sb5 is related to the tilt angle of the magnetic field.  When the field is tilted towards the plane, domains of opposite chirality appear. A fully polarized, monochiral state is induced by large out-of-plane fields.",
         "expected_output": "The second harmonic response $V_{2\\omega}$ shows a sudden sign reversal withing 0.5º when the current is applied along the c axis ($I||c$).",
         "retrieval_context": null,
         "context": null,
@@ -65,7 +65,7 @@
     },
     {
         "input": "What is the temperature dependence of the electronic magnetochiral anisotropy (eMChA) in CsV3Sb5?",
-        "actual_output": "The eMChA signal in CsV3Sb5 becomes significant only at temperatures below $T' \\approx 35 \\, \\text{K}$, which is deep within the charge-ordered state of CsV3Sb5 ($T_{CDW} \\approx 94 \\, \\text{K}$). This temperature dependence indicates a direct correspondence between electronic properties. No second-harmonic voltage is observed at large field angles ($\\theta > 10^\\circ$).",
+        "actual_output": "The electronic magnetochiral anisotropy (eMChA) signal in CsV3Sb5 becomes significant below approximately 35 K.  The eMChA signal increases slowly with decreasing temperature, then accelerates at around 35 K, and saturates below 3 K. The temperature dependence reveals a direct connection between electronic chirality, unidirectional charge order, and spontaneous time-reversal symmetry breaking.",
         "expected_output": "The sudden sign reversal in the second harmonic response $V_{2\\omega}$ is less pronounced with increasing temperature.",
         "retrieval_context": null,
         "context": null,
@@ -73,7 +73,7 @@
     },
     {
         "input": "Explain the architecture in terms of qubits and adjustable copuplers of the Sycamore processor.",
-        "actual_output": "The Sycamore processor consists of a two-dimensional array of 54 transmon qubits, where each qubit is tunably coupled to its four nearest neighbors in a rectangular lattice. There are 86 couplers in the processor. The processor is fabricated using aluminum for metallization and Josephson junctions, and indium for bump-bonds between two silicon wafers.",
+        "actual_output": "The Sycamore processor is a two-dimensional array of 54 transmon qubits. Each qubit is connected to its four nearest neighbors via adjustable couplers. These couplers allow for quick tuning of the qubit-qubit coupling.",
         "expected_output": "The sycamore processor has 54 qubits in a rectangular array, each one coupled to its four nearest neighbors.",
         "retrieval_context": null,
         "context": null,
@@ -81,7 +81,7 @@
     },
     {
         "input": "Explain what kind of control operations were used in the quantum supremacy circuits.",
-        "actual_output": "The quantum supremacy circuits use single- and two-qubit gates, where single-qubit gates are randomly chosen from a set \\(\\{X, Y, W\\}\\), with \\(W = (X + Y) / \\sqrt{2}\\). The two-qubit gates are chosen according to a tiling pattern, coupling each qubit sequentially to its four nearest-neighbor qubits. Control signals for these gates involve waveforms for both single- and two-qubit operations.",
+        "actual_output": "The quantum supremacy circuits utilized single-qubit gates chosen randomly from a set of operations. These were followed by two-qubit gates. The two-qubit gates were chosen according to a tiling pattern, coupling each qubit to its four nearest neighbors.",
         "expected_output": "The experiment uses three kinds of single-qubit gates: $\\sqrt{X}$, $\\sqrt{Y}$ and $\\sqrt{W}$, where $W=(X+Y)/\\sqrt{2}$.",
         "retrieval_context": null,
         "context": null,
@@ -89,7 +89,7 @@
     },
     {
         "input": "What is the speed-up gained by using a quantum processor instead of an equal-fidelity classical sampling algorithm?",
-        "actual_output": "The Sycamore processor can sample one instance of a quantum circuit a million times in about 200 seconds. Current benchmarks indicate that the equivalent task would take a state-of-the-art classical supercomputer approximately 10,000 years. This represents a dramatic increase in speed.",
+        "actual_output": "The quantum processor takes 200 seconds to sample one instance of a quantum circuit a million times. An equal-fidelity classical sampling algorithm would take approximately 10,000 years on a million cores. This represents a dramatic speedup achieved by the quantum processor.",
         "expected_output": "For $m=20$ number of cycles and $n=53$ qubits, obtaining a million samples on the quantum processor takes 200 seconds, whereas an equal-fidelity classical sampling would take 10,000 years on a million cores.",
         "retrieval_context": null,
         "context": null,
@@ -97,7 +97,7 @@
     },
     {
         "input": "What is the effect of spin-orbit coupling (SOC) in WTe2?",
-        "actual_output": "Strong spin-orbit coupling (SOC) in $1T'-WTe_2$ lifts the degeneracy at the Dirac cones along the $0-Y$ direction. This results in the opening of a bulk bandgap. The opening of this gap due to SOC is a signature of a quantum spin Hall (QSH) insulator.",
+        "actual_output": "Spin-orbit coupling (SOC) in WTe2 lifts the degeneracy at the Dirac cones, which are formed by band inversion. This opens a bandgap in the bulk states of WTe2. The opening of a bandgap is a key signature of strong SOC.",
         "expected_output": "Strong SOC lifts the degeneracy at the Dirac point, opening a bulk bandgap in 1T'-WTe2 around the $\\Gamma$ point.",
         "retrieval_context": null,
         "context": null,
@@ -105,7 +105,7 @@
     },
     {
         "input": "How are WTe2 samples usually characterized with ARPES?",
-        "actual_output": "The electronic structure of $1T^0$-WTe2 can be investigated using Angle-Resolved Photoemission Spectroscopy (ARPES). ARPES measurements along the $0-Y$ high-symmetry direction are used to map the Fermi surface of $1T^0$-WTe2. Additionally, ARPES is used to identify the strong spin-orbit coupling (SOC) in $1T^0$-WTe2 by observing the lifting of degeneracy at the Dirac cones, resulting in a bulk gap.",
+        "actual_output": "ARPES is used to characterize WTe2 samples by measuring the overall band structure and Fermi surface maps. These measurements are performed along high-symmetry directions in the Brillouin zone.  The data obtained from ARPES is then compared with theoretical calculations to confirm the material's properties.",
         "expected_output": "ARPES is used to measure the band dispersion along high-symmetry paths such as $\\Gamma - Y$ by measuring the photoemission spectrum.",
         "retrieval_context": null,
         "context": null,
@@ -113,7 +113,7 @@
     },
     {
         "input": "Explain the role of band inversions in the topological phase transition of WTe2.",
-        "actual_output": "The lattice distortion from the 1T phase to the 1T' phase induces band inversion, causing 1T'-WTe2 to become topologically non-trivial. Without spin-orbit coupling (SOC), the inverted bands cross at a momentum point, forming a Dirac cone. Strong SOC lifts the degeneracy at the Dirac point, opening a bulk bandgap.",
+        "actual_output": "Band inversions are crucial for the topological phase transition in 1T'-WTe2.  The lattice distortion from the 1T phase to the 1T' phase induces band inversion. This band inversion causes 1T'-WTe2 to become topologically non-trivial.",
         "expected_output": "The lattice distortion from the 1T phase to the 1T' phase induces band inversion, causing 1T'-WTe2 to become topologically non-trivial. Without spin-orbit coupling (SOC), the inverted bands cross at a momentum point along the 0 – Y direction, forming a Dirac cone. Strong SOC lifts the degeneracy at the Dirac point, opening a bulk bandgap. In 1T-WTe2, the bands from 5dxz and 5dz2 orbitals of W are separated. Due to the symmetry breaking through the lattice distortion from 1T to 1T', these orbitals hybridize substantially. The dz2 orbital is lowered below EF whereas the dxz orbital lifts in the opposite direction near the 0 point. Because these two inverted bands have different parities at the 0 point, the Z2 invariant v, in which (-1)v is determined by the product of all occupied.",
         "retrieval_context": null,
         "context": null,
@@ -121,7 +121,7 @@
     },
     {
         "input": "What is the atomic structure of Fe3GeTe2 and how long are the lattice vectors. What are the atomic positions?",
-        "actual_output": "$Fe_3GeTe_2$ has a hexagonal layered structure and the lattice vector lengths are 3.991 Å, 3.991 Å, and 16.33 Å. The atomic positions are Te (4f) 1/3, 2/3, 0.09018; Fe (4e) 0, 0, 0.1718; Fe (2c) 1/3, 2/3, 1/4; and Ge (2d) 1/3, 2/3, 3/4. The angles $\\alpha$ and $\\beta$ are both 90º while $\\gamma$ is 120º.",
+        "actual_output": "The lattice vectors for Fe3GeTe2 are 3.991 Å, 3.991 Å, and 16.33 Å. The angles are 90°, 90°, and 120°. The atomic positions in fractional coordinates are Te (1/3, 2/3, 0.09018), Fe (0, 0, 0.1718), Fe (1/3, 2/3, 1/4), and Ge (1/3, 2/3, 3/4).",
         "expected_output": "Fe3GeTe2 has a hexagonal layered structure formed by slabs of Fe3Ge lying between layers of Te bound by weak van der Waals forces, with the symmetry of space group 194. The $a_1$ and $a_2$ vectors are 3.911 Angstroms long, and the $a_3$ vector is 16.33$",
         "retrieval_context": null,
         "context": null,
@@ -129,7 +129,7 @@
     },
     {
         "input": "How are Wilson loops used to characterize the nodal lines in Fe3GeTe2?",
-        "actual_output": "The discontinuities of Wilson loops over paths that intersect nodal crossings are used to identify nodal lines in Fe3GeTe2. The trace of the Wilson loop operator is used to predict the appearance of drum-head surface states in the projection of the nodal lines. The trace of the Wilson loop can be $\\phi = 0$ or $\\phi = \\pi$, which gives rise to surface states since the surface termination is exactly at the HWF center.",
+        "actual_output": "Wilson loops are used to characterize nodal lines by analyzing the trace of the Wilson loop operator. The trace of the Wilson loop is proportional to the average z position of the centers of the hybrid Wannier functions. A  π jump in the trace of the Wilson loop indicates a symmetry-protected nodal line.",
         "expected_output": "Wilson loops can be used to identify symmetry-protected topological nodal lines because their trace is quantized and experiences a $\\pi$ jump when intersecting them. The value of the Wilson loop trace can be used to predict the presence of surface drumhead states.",
         "retrieval_context": null,
         "context": null,
@@ -137,7 +137,7 @@
     },
     {
         "input": "Is there any relationship between the number of Weyl points and the absolute anomalous Hall conductivity (AHC) in Fe3GeTe2?",
-        "actual_output": "Yes, the number of Weyl points is related to the anomalous Hall conductivity (AHC) in Fe3GeTe2. The contribution of Weyl points to the AHC has to be complemented by the two other sources, especially in the -0.6 to 0.1 eV range, where Weyl crossings are almost absent. The main three contributions to the AHC are due to gapped nodal lines, Weyl nodes, and SOC-induced gaps.",
+        "actual_output": "Yes, there is a relationship between the number of Weyl points and the absolute anomalous Hall conductivity (AHC) in Fe3GeTe2. The study identifies Weyl points in the band structure and calculates their chirality, and their contribution to the AHC is significant, especially in a specific energy range. The AHC is also influenced by other factors like nodal lines and gaps between spin-up and spin-down bands.",
         "expected_output": "The number of Weyl points at a chemical potential can be related to a change in absolute AHC, since the contribution of their Berry curvature is unloccked when filled. Their effect can be either to suppress or enhance the AHC.",
         "retrieval_context": null,
         "context": null,
@@ -145,7 +145,7 @@
     },
     {
         "input": "What are diffuse scattering maps in the context of crystalline materials?",
-        "actual_output": "Diffuse scattering maps in crystalline materials reveal rods of diffuse scattering along specific directions, indicating deviations from perfect periodicity due to structural imperfections. These imperfections include shifts in the atomic positions. The intensity of Bragg peaks located at integer positions on these diffuse scattering rods are reduced compared to a perfect crystal. Diffuse scattering can be caused by stacking faults or local distortions.",
+        "actual_output": "Diffuse scattering maps are used to visualize the diffuse intensity observed in X-ray diffraction experiments. This diffuse intensity arises from lattice vibrations and correlated disorder within the crystalline material. These maps help to identify and study phenomena like the freezing of phonons and the formation of charge density waves.",
         "expected_output": "Diffuse scattering maps are a technique to analyze the crystalline structure of materials. It can also be used to study the phonon properties and the appearance of charge density waves (CDW).",
         "retrieval_context": null,
         "context": null,
@@ -153,7 +153,7 @@
     },
     {
         "input": "What is the unit cell of CsVe3Sb5 and the space group?",
-        "actual_output": "The crystal structure of $CsV_3Sb_5$ is shown in Extended Data Fig. 1a. The space group is not mentioned in the text.",
+        "actual_output": "The unit cell of CsV3Sb5 is described as individual sublattices of a kagome network of V coordinated by Sb1 atoms and a hexagonal net of Sb2. The space group of CsV3Sb5 is P6/mmm. This information is derived from the provided context.",
         "expected_output": "CsV3Sb5 has the symmetry of space group P6/mmm. The unit cell is described as individual sublattices of a kagome netwwork of V coordinated by Sb1 atoms and a hexagonal net of Sb2 above and below each kagome layer.",
         "retrieval_context": null,
         "context": null,
@@ -161,7 +161,7 @@
     },
     {
         "input": "Can diffuse scattering and inleastic x-ray scattering (IXS) be used to analyze phonons?",
-        "actual_output": "Yes, both diffuse scattering and inelastic X-ray scattering (IXS) can be used to analyze phonons. Low-energy phonons were measured by inelastic x-ray scattering (IXS) at the ID28 IXS station at ESRF with an incoming energy $E_i=17.8$ keV, $\\Delta E=3$ meV and at the HERIX beamline at the Argonne Photon Source (APS). The temperature dependence of the IXS spectra highlights the enhancement of the elastic line and drop of intensity of the low-energy phonon at 96 K.",
+        "actual_output": "Yes, diffuse scattering (DS) and inelastic x-ray scattering (IXS) are used together to analyze phonons. The combination of DS and IXS helps to identify frozen phonon fluctuations and understand the nature of charge density wave (CDW) in AV3Sb5. IXS is used to study the low-energy non-dispersive phonon.",
         "expected_output": "Yes. Diffuse scattering can be used to analyze the phonon properties of crystals, such as the freezing of specific modes and lattice instabilities. IXS can be used to measure the low-energy phonon spectrum.",
         "retrieval_context": null,
         "context": null,
@@ -169,7 +169,7 @@
     },
     {
         "input": "What does a triangulene nanostar look like?",
-        "actual_output": "A triangulene-based nanostar (TNS) consists of six [3]triangulene moieties arranged in a macrocycle, forming a star shape with a pore size of 1.2 nm. It exhibits a collective spin state generated by the interaction of its 12 unpaired $\\pi$-electrons along the conjugated lattice, corresponding to the antiferromagnetic ordering of six $S = 1$ sites. The TNS structure can be seen using STM imaging after thermal annealing on a gold substrate.",
+        "actual_output": "A triangulene nanostar (TNS) is a macrocycle composed of six [3]triangulene moieties arranged in a ring. This structure results in a pore size of 1.2 nm. The TNS exhibits a collective spin state.",
         "expected_output": "A triangulene-based nanostar (TNS) consists of six [3]triangulene moieties arranged in a macrocycle, forming a star shape with a pore size of 1.2 nm.",
         "retrieval_context": null,
         "context": null,
@@ -177,7 +177,7 @@
     },
     {
         "input": "Has triangulene been synthesized on-surface?",
-        "actual_output": "Yes, triangulene has been synthesized on a surface using scanning probe microscopy (SPM). Many triangulene-based nanostructures have been generated and characterized on-surface. Even the Clar's goblet, formed by two fused [3]triangulenes sharing one benzene ring, was generated on-surface.",
+        "actual_output": "Yes, triangulene has been synthesized on a surface. The context mentions the preparation of [3]triangulene on a surface using scanning probe microscopy. It also highlights the use of on-surface synthesis under ultra-high vacuum conditions as an interesting alternative.",
         "expected_output": "Yes, triangulene has been synthesized on-surface.",
         "retrieval_context": null,
         "context": null,
@@ -185,7 +185,7 @@
     },
     {
         "input": "What is the relation between the bias voltage in triangulene (TNS) and its conductance?",
-        "actual_output": "The differential conductance ($dI/dV$) vs. bias spectra over the sides of triangulene units of a TNS shows bias-symmetric stepped features. These features are characteristic of spin excitation induced by inelastic electron tunneling. The $dI/dV$ steps appear localized over the edges of the triangulene units.",
+        "actual_output": "The dI/dV spectrum on a triangulene unit of a TNS shows inelastic steps at specific bias voltages. These steps are related to the excitation of collective spin states within the triangulene ring. The position and height of these steps provide information about the spin excitation spectrum.",
         "expected_output": "The conductance shows a dip at zero bias voltage and bias-symmetric step-like features which are characteristic of spin excitation induced by inelastic electron tunneling.",
         "retrieval_context": null,
         "context": null,
@@ -193,7 +193,7 @@
     },
     {
         "input": "What is the main nuclear reaction for silicon (Si) used in neutron activation analysis?",
-        "actual_output": "The main nuclear reaction for silicon (Si) used in neutron activation analysis is $^{28}$Si(n,p)$^{28}$Al. This reaction produces $^{28}$Al, which has a half-life of 2.24 minutes and emits gamma rays at an energy of 1368.625 keV. The intensity of these gamma rays is measured to determine the concentration of silicon in the sample.",
+        "actual_output": "The main nuclear reaction for silicon (Si) used in neutron activation analysis is 28Si(n,p)28Al. This reaction involves the bombardment of silicon-28 with a neutron (n), resulting in the emission of a proton (p) and the production of aluminum-28 (28Al). The produced radionuclide has a half-life of 2.24 minutes.",
         "expected_output": "The main nuclear reaction for Si detection in neutron-activation analysis is 28Si(n,p)28Al, which has a half-life of 2.24 minutes.",
         "retrieval_context": null,
         "context": null,
@@ -201,7 +201,7 @@
     },
     {
         "input": "What is typical behavior of the nuetron flux from a compact source with respect to distance to the source?",
-        "actual_output": "The neutron flux from a compact source typically decreases with distance. The flux scales as $d^{-2}$, where d is the distance from the source, indicating an inverse square relationship. There can be an order of magnitude loss in signal when the sample is 30 mm away.",
+        "actual_output": "The neutron flux from a compact source decreases with the square of the distance from the source. This means the flux scales as $d^{-2}$, where $d$ is the distance. For instance, at a position of 3.8 cm from the source, the flux is approximately $10^7 \\text{ cm}^{-2}\\text{ s}^{-1}$.",
         "expected_output": "The neutron flux diminishes with the square of distance from the sample to the source.",
         "retrieval_context": null,
         "context": null,
@@ -209,7 +209,7 @@
     },
     {
         "input": "What are the fusion reactions used to obtain neutrons in the NILE laboratory?",
-        "actual_output": "In the NILE laboratory, neutrons are produced using Deuterium-Tritium (D-T, 14 MeV) and Deuterium-Deuterium (D-D, 2.5 MeV) fusion reactions. These reactions are facilitated by two independent sources operating at the same facility. The facility aims to explore the potential of Compact Neutron Sources (CNSs).",
+        "actual_output": "The NILE laboratory uses Deuterium-Tritium (D-T) and Deuterium-Deuterium (D-D) fusion reactions to obtain neutrons. The D-T reaction produces 14 MeV neutrons, while the D-D reaction produces 2.5 MeV neutrons. These reactions are used in the neutron sources at the facility.",
         "expected_output": "They generate a plasma gas using a microwave-driven Electron-Cyclotron Resonance (ECR) source to ionize deuterium (D-D  source), or a mix of deuterium and tritium (D-T source). The ions generated in the plasma are accelerated towards a metallic target using a high-voltage  electric  field,  where  they  are  implanted  in  the  form  of  a  metal  hydride.  The remaining  ions  in  the  plasma  strike  the  previously  implanted  ones  in  the  target  leading  to fusion  events  that  release  monoenergetic  neutrons  of  14  or  2.5  MeV for  the  D-T  and  D-D sources, respectively.",
         "retrieval_context": null,
         "context": null,
@@ -217,7 +217,7 @@
     },
     {
         "input": "What are the crystal structure parameters of alpha-RuCl3?",
-        "actual_output": "Alpha-RuCl3 has a monoclinic crystal structure with space group C2/m and Z = 4. The cell parameters are a = 5.9762(7) Å, b = 10.342(1) Å, c = 6.013(1) Å, $\\beta$ = 108.87(2)°, and Volume = 371(2) Å³. The atomic fractional coordinates are also provided for Ru, Cl1, and Cl2.",
+        "actual_output": "The crystal structure of alpha-RuCl3 at 80 K has a monoclinic unit cell with the space group C 2/m. The lattice parameters are a = 5.9762(7) Å, b = 10.342(1) Å, and c = 6.013(1) Å, with an angle β = 108.87(2)°.  The volume is 371(2) Å3.",
         "expected_output": "The symmetry is of space group C2/m with $Z=4$ atoms in the unit cell. The $a,b,c$ axes measure 5.9762, 10.342 and 6.013 Angstrom respectively. The $\\alpha,\\beta,\\gamma$ angles are 90, 108.87 and 80 degrees.",
         "retrieval_context": null,
         "context": null,
@@ -225,7 +225,7 @@
     },
     {
         "input": "Explain the change in magnetic susceptibility of alpha-RuCl3 with respect to temperature.",
-        "actual_output": "In single crystals of α-RuCl3, previous studies have observed two anomalies near 8 and 14 K in magnetic susceptibility and heat capacity. The transition near 8 K is attributed to the onset of zigzag magnetic order. Studies on powder samples showed only one anomaly near TN ≈ 13 K.",
+        "actual_output": "The magnetic susceptibility of α-RuCl3 exhibits a single anomaly near 13 K, indicative of long-range antiferromagnetic ordering. This ordering suggests a transition from a paramagnetic state to an antiferromagnetic state below this temperature. The observed magnetic susceptibility is consistent with that of powder samples, demonstrating a single transition at low temperatures.",
         "expected_output": "The magnetic susceptibility $\\chi$ increases from 0 to 13K (the critical temperature) and then decreases linearly with increasing temperature.",
         "retrieval_context": null,
         "context": null,
@@ -233,7 +233,7 @@
     },
     {
         "input": "What is the magnetic phase diagram for alpha-RuCl3 in terms of the magnetic field and temperature?",
-        "actual_output": "The magnetic phase diagram for single-crystal $\\alpha$-RuCl3 in a magnetic field $H \\perp c^*$ shows a zigzag antiferromagnetic phase at low temperatures and a paramagnetic (PM) phase at higher temperatures. The phase boundary between these phases is marked by a dashed line, indicating a single enclosed antiferromagnetic phase at low temperatures and modest magnetic fields. A field-induced phase transition near 8 T is suggested by the steep rise in M(H) at lower temperatures.",
+        "actual_output": "The magnetic phase diagram for single-crystal α-RuCl3 shows a zigzag antiferromagnetic phase at low temperatures and a paramagnetic phase at higher temperatures. The boundary between these phases is indicated by a dashed line.  In the magnetic field applied perpendicular to c*, a field-induced phase transition is observed at about 8 T, which shifts down in field and fades as the temperature increases.",
         "expected_output": "Below a magnetic field of approximately 8T, the systems shows a zig-zag AFM configuration up to around 14K. For a higher magnetic field or higher temperature, the system is paramagnetic.",
         "retrieval_context": null,
         "context": null,
@@ -241,7 +241,7 @@
     },
     {
         "input": "Is the MAPbI3 Cubic or orthorhombic at a temperature of 350K?",
-        "actual_output": "Based on the provided context, the average, nonequilibrium structure of MAPbI3 is cubic at room temperature. However, the thermal evolution either below or above ambient conditions is still missing. The context also mentions a δ → ϵ transition in the pressure range 2.5−3.0 kbar, accompanied by a significant reduction of the unit-cell volume by ca. 5%.",
+        "actual_output": "At a temperature of 350K, MAPbI3 is in a cubic phase. The provided context states that the cubic phase exists above 330K. The orthorhombic phase exists below 160K.",
         "expected_output": "The MAPbI3 is cubic at 350K up to approximately 0.5 GPa of pressure. For higher pressures, it is in a HPC phase.",
         "retrieval_context": null,
         "context": null,
@@ -249,7 +249,7 @@
     },
     {
         "input": "Explain the experimental phase diagram of MAPbI3 in terms of pressure and temperature.",
-        "actual_output": "The pressure-temperature phase diagram of $MAPbI_3$ was mapped using neutron and synchrotron X-ray diffraction. At room temperature, a $\\delta \\rightarrow \\epsilon$ transition was observed in the pressure range of 2.5-3.0 kbar, accompanied by a significant reduction of the unit-cell volume by approximately 5%. The compressed regime progressively evolves towards a highly disordered structure.",
+        "actual_output": "The experimental phase diagram of MAPbI3, up to 25 kbar, reveals several phases labeled with Greek letters. At room temperature, a δ → ϵ transition occurs in the pressure range of 2.5-3.0 kbar. Diffraction patterns reveal Im3̅ symmetry is preserved upon cooling at high pressure.",
         "expected_output": "At low temperature, below 150K, it is orthorhombic. At low pressure, it becomes tetragonal and then cubic for increasing temperature. At pressures above 1GPa, it goes into a HPC phase for temperatures higher than 150K, approximately.",
         "retrieval_context": null,
         "context": null,
@@ -257,7 +257,7 @@
     },
     {
         "input": "At what temperature does the triple point occur in the density of the MAPbI3 compound?",
-        "actual_output": "According to the text, in the low-compression regime preceding the low-temperature triple-point, a noticeable drop of the FUD occurs at approximately 150 K, marking the γ → β transition. The low-temperature triple-point occurs at 175 K and 1 kbar.",
+        "actual_output": "The triple point in the MAPbI3 compound occurs at approximately 175 K and 1 kbar.  At this point, there is a low-temperature triple point. This is where a transition is observed.",
         "expected_output": "The triple point happens at 175K for a pressure of 1kbar.",
         "retrieval_context": null,
         "context": null,
@@ -265,7 +265,7 @@
     },
     {
         "input": "How do the Raman modes of PEA2MnCl4 vary with the temperature?",
-        "actual_output": "I'm sorry, but the information about PEA2MnCl4 is not available in the context. However, the temperature dependence of Raman modes for $EA_2MnCl_4$ is available. The $NH_3^+$ torsion is around $\\approx 290 cm^{-1}$, the C-C stretching is around $\\approx 872 cm^{-1}$, and the C-N stretching is around $\\approx 978 cm^{-1}$.",
+        "actual_output": "The Raman modes of EA2MnCl4 have been studied in the temperature range of 80-350 K. The study found that the NH3+ torsion (≈290 cm-1), C-C stretching (≈872 cm-1), and C-N stretching (≈978 cm-1) modes are present.  A structural phase transition was observed at ≈230 K, which is only reflected in the organic cation vibrations.",
         "expected_output": "The position of the peak of some Raman modes in  PEA2MnCl4 tends to move left (to lower values of the wavelength) with increasing temperature.",
         "retrieval_context": null,
         "context": null,
@@ -273,7 +273,7 @@
     },
     {
         "input": "How does th magnetization M of the Co2+ atoms vary in EDACoCl4 with respect to temperature?",
-        "actual_output": "The magnetization M of the $Co^{2+}$ atoms in $EDACoCl_4$ is shown as a function of temperature T at 500 Oe in Figure 5c. The measurements were taken both parallel and perpendicular to the [$CoCl_4$]$^{2-}$ tetrahedra layers. The magnetic field (H) dependent magnetization M is also shown at 5 K in Figure 5f, both parallel and perpendicular to the [$CoCl_4$]$^{2-}$ tetrahedra layers.",
+        "actual_output": "The temperature-dependent magnetization (M) of EDACoCl4 is presented in the provided figures. The magnetization is measured at 500 Oe parallel and perpendicular to the [CoCl4]2− tetrahedra layers. The figures show how the magnetization varies with temperature for EDACoCl4.",
         "expected_output": "The magnetization increasing from 0K and peaks at approximately 13K, the it decreases expontentially.",
         "retrieval_context": null,
         "context": null,
@@ -281,7 +281,7 @@
     },
     {
         "input": "What is the Neel tempearture of PEA2MnCl4?",
-        "actual_output": "According to the document, an increase of the magnetization takes place at the Neel temperature, $T_N \\approx 47 K$, being more marked in the in-plane direction in PEA2MnCl4. The magnetization tends to drop toward metal halide.",
+        "actual_output": "The Neel temperature, $T_N$, of PEA$_2$MnCl$_4$ is approximately 87 K. This is indicated by the broad maximum observed in the M(T) curve. The easy axis for the antiferromagnetic (AFM) ordering is perpendicular to the [MnCl$_6$]$^{4-}$ octahedra layers.",
         "expected_output": "The Néel temperature of PEA2MnCl4 is approximately 47K.",
         "retrieval_context": null,
         "context": null,
@@ -289,7 +289,7 @@
     },
     {
         "input": "How many enforced semimetals are there for the compounds with magnetic space group (MSG) 51.298?",
-        "actual_output": "I am sorry, but the provided text does not contain information about the number of enforced semimetals for the compounds with magnetic space group (MSG) 51.298.",
+        "actual_output": "For compounds with magnetic space group (MSG) 51.298, the context indicates there is one enforced semimetal for each value of U = 0, 2, and 4 eV. The table provides the number of enforced semimetals/ESFDs for different values of U. This information is found in Table 1.",
         "expected_output": "There are 0 or 1 enforced semimetals with the magnetic space group symmetry of 51.298, depending on the value of the U parameter.",
         "retrieval_context": null,
         "context": null,
@@ -297,7 +297,7 @@
     },
     {
         "input": "Does the crystal MNGeO3 have surface states?",
-        "actual_output": "Yes, MnGeO3 has surface states. Specifically, it exhibits a (010) surface state and a Fermi arc on the surface. The Fermi arc connects Dirac points on the (010) surface.",
+        "actual_output": "Yes, the (010) surface of the crystal MnGeO3 exhibits surface states. Specifically, the Fermi surface on the (010) surface of MnGeO3 has a Fermi arc. The surface states are well separated from the bulk states.",
         "expected_output": "MnGeO3 is a Diract semimetal and therefore it has no surface states.",
         "retrieval_context": null,
         "context": null,
@@ -305,7 +305,7 @@
     },
     {
         "input": "Give examples of metallic iron pnictides.",
-        "actual_output": "Examples of metallic iron pnictides include LaFeAsO, CaFe2As2, EuFe2As2, BaFe2As2, Fe2As, CaFe4As3, LaCrAsO, Cr2As, CrAs, and CrN.",
+        "actual_output": "Examples of metallic iron pnictides include LaFeAsO, CaFe2As2, EuFe2As2, and BaFe2As2. These materials fall under the category of ThCr2Si2 structure and related structures. They have received attention due to their high-temperature iron pnictide properties.",
         "expected_output": "Some metallic iron pnictides are LaFeAsO, CaFe2As2, EuFe2As2, BaFe2As2 and CaFe4As3, among others.",
         "retrieval_context": null,
         "context": null,
@@ -313,7 +313,7 @@
     },
     {
         "input": "At what pressure does FeSe transition from a tetragonal to a nematic state?",
-        "actual_output": "FeSe transitions from a nematic to a tetragonal phase with increasing pressure. The nematic phase transition of FeSe is suppressed with increasing pressure, but the specific pressure at which this occurs is not mentioned. The nematic quantum phase transition is located in the normal state between two superconducting domes.",
+        "actual_output": "The FeSe tetragonal to nematic transition occurs at approximately 60 K at ambient pressure. With increasing pressure, the nematic transition temperature decreases until it becomes unobservable around p ≈ 5.8(5) kbar. This value is obtained by extrapolating the pressure evolution of the transition temperature to zero.",
         "expected_output": "The critical pressure of transition from a tetragonal to a nematic state is 5.8kbar.",
         "retrieval_context": null,
         "context": null,
@@ -321,7 +321,7 @@
     },
     {
         "input": "Does FeSe support a spin density wave (SDW) at any pressure or temperature?",
-        "actual_output": "FeSe does not exhibit a spin density wave (SDW) in its phase diagram at any pressure or temperature. Instead, it displays a nematic order that disappears around a critical pressure $p_c$. At high pressures, outside the nematic phase, the Fermi surface of FeSe expands, contrasting with its behavior inside the magnetic phase.",
+        "actual_output": "The provided context does not explicitly state whether FeSe supports a spin density wave (SDW) at any pressure or temperature. It does mention that magnetic order is expected at high pressures exceeding 40 kbar, but does not confirm the presence of a SDW. Therefore, I cannot answer the question.",
         "expected_output": "No, the spin-density wave (SDW) phase only exists for some ranges of pressure and temperature, approximately from 30 to 80kbar and from 0 to 40K.",
         "retrieval_context": null,
         "context": null,
@@ -329,7 +329,7 @@
     },
     {
         "input": "Describe the quantum oscillations in FeSe and their evolution with pressure.",
-        "actual_output": "Quantum oscillation spectra of FeSe0.89S0.11 reveal several distinct peaks, indicating a complex multiband electronic structure. The evolution of these quantum oscillations with pressure shows changes in magnetotransport and TDO resonant frequency. The oscillatory component of the magnetoresistance demonstrates the evolution of the dominant low-frequency oscillation with pressure, and the loss of frequency is attributed to a Lifshitz transition triggered by changes in the interlayer coupling tuned by pressure.",
+        "actual_output": "Quantum oscillations in FeSe0.89S0.11 reveal distinct peaks, indicating a complex multiband electronic structure. With increasing pressure, the dominant low-frequency oscillation disappears near 4.7 kbar.  The Fermi surface area of the δ pocket expands significantly at high pressures.",
         "expected_output": "At low pressures in the nematic state, there is a low-frequency oscillation which disappears beyond 4,7kbar. At high pressure and high magnetic field, there is a high-frequency oscillation.",
         "retrieval_context": null,
         "context": null,
@@ -337,7 +337,7 @@
     },
     {
         "input": "What symmetries can protect corner charge fractionalization?",
-        "actual_output": "Spatial symmetries can protect corner charge fractionalization. When particle-hole symmetry is present, topologically protected zero-energy corner states can be predicted and are characterized by $Q_c = \\frac{1}{2}$ mod 1. In the case of two reflections, $M_x$ and $M_y$, there is a twofold rotation symmetry $C_2 = M_x M_y$, which leads to the conclusion that all corner charges $Q_c$ contributed by any gapped and TRS 1D addition are necessarily even.",
+        "actual_output": "Symmetries like Cn rotations, mirror symmetries (especially when combined with twofold rotation symmetry), and the combination of C3 symmetry with 3D inversion symmetry can protect corner charge fractionalization. However, single mirror symmetry can not protect corner charge fractionalization.",
         "expected_output": "Charge fractionalization can be protected by C2, C3, C4 and C6 symmetries.",
         "retrieval_context": null,
         "context": null,
@@ -345,7 +345,7 @@
     },
     {
         "input": "What do the Brillouin zones of C2, C4 and C3 symmetric crystals look like?",
-        "actual_output": "The Brillouin zones of crystals with \\(C_2\\) symmetry have three twofold High Symmetry Points (HSPs): X, Y, and M. Crystals with \\(C_4\\) symmetry have two twofold HSPs: X and X', and one fourfold HSP: M. For crystals with \\(C_3\\) symmetry, there are only two threefold HSPs: K and K'.",
+        "actual_output": "The Brillouin zones of crystals with C2, C4, and C3 symmetries have specific features. C2-symmetric crystals have three two-fold high-symmetry points. C4-symmetric crystals have two two-fold and one four-fold high-symmetry points. C3-symmetric crystals have two three-fold high-symmetry points.",
         "expected_output": "For C2 and C4 symmetries, the Brillouin zones look like squares. For C3, it looks like an hexagon.",
         "retrieval_context": null,
         "context": null,
@@ -353,7 +353,7 @@
     },
     {
         "input": "What are the maximal Wyckoff positions for unit cells with rotational symmetry C2?",
-        "actual_output": "The maximal Wyckoff positions for unit cells with C2 rotational symmetry are listed in Table II. These positions include 1a, 1b, 1c, and 1d. They are associated with specific coordinates such as (0,0,0,0) for 1a and (1,1,1,1) for 1b.",
+        "actual_output": "For unit cells with C2 rotational symmetry, the maximal Wyckoff positions are listed in Table II. They are associated with the following invariants:  [X I2 ], [Y I2 ], and [M I2 ]. These positions are crucial for understanding the symmetry properties.",
         "expected_output": "The maximal Wyckoff positions for C2-symmetry crystals are 1a, 1b, 1c and 1d.",
         "retrieval_context": null,
         "context": null,
@@ -361,7 +361,7 @@
     },
     {
         "input": "Describe the magneto-optical response of permalloy nanoantennas.",
-        "actual_output": "The magneto-optical activity (MOA) spectrum of permalloy (Py) nanoantennas displays features that arise from the interplay between the amplitude and phase of the localized plasmon resonance (LPR) and magneto-optical LPR. The MOA spectrum exhibits a maximum in the spectral range where the dipolar LPR is observed (500–900 nm). The magneto-optical Kerr effect (MOKE) signals can be clearly measured in the spectral range where the LPR is excited, with the characteristic oscillating behavior of $\\theta_K$ and $\\epsilon_K$.",
+        "actual_output": "The magneto-optical response of permalloy (Py) nanoantennas exhibits features typical of magnetoplasmonic nanostructures. The magneto-optical activity (MOA) spectrum shows a maximum where the localized plasmon resonance (LPR) is observed. The MOA is amplified at resonance for the NCRD with respect to Py-DI structures at the same wavelength.",
         "expected_output": "The magneto-optical activity (MOA) of Non-concentric ring-disk (NCRD) nanoantennas shows a high peak at the wavelength of the plasmon resonance in the gold ring.",
         "retrieval_context": null,
         "context": null,
@@ -369,15 +369,15 @@
     },
     {
         "input": "What is the mechanisms that drives a large magneto-optical enhacement in plasmonic nanocavities?",
-        "actual_output": "The large magneto-optical enhancement in plasmonic nanocavities is driven by the hybridization with multipolar dark modes in specially designed magnetoplasmonic nanocavities. The broken geometrical symmetry enables coupling with free-space light and hybridization of the multipolar dark modes of a plasmonic ring nanoresonator with the dipolar localized plasmon resonance of the ferromagnetic disk placed inside the ring. This hybridization results in a low-radiant multipolar Fano resonance that drives a strongly enhanced magneto-optically induced localized plasmon.",
-        "expected_output": "What is the mechanisms that drives a large magneto-optical enhacement in plasmonic nanocavities?",
+        "actual_output": "The large magneto-optical enhancement in plasmonic nanocavities is driven by the hybridization of multipolar dark modes with a dipolar localized plasmon resonance. This hybridization results in a low-radiant multipolar Fano resonance. The strongly enhanced magneto-optically induced localized plasmon then drives the enhancement.",
+        "expected_output": "The large magneto-optical enhancement in plasmonic nanocavities is driven by the hybridization with multipolar dark modes in specially designed magnetoplasmonic nanocavities. The broken geometrical symmetry enables coupling with free-space light and hybridization of the multipolar dark modes of a plasmonic ring nanoresonator with the dipolar localized plasmon resonance of the ferromagnetic disk placed inside the ring. This hybridization results in a low-radiant multipolar Fano resonance that drives a strongly enhanced magneto-optically induced localized plasmon.",
         "retrieval_context": null,
         "context": null,
         "source_file": null
     },
     {
         "input": "How do they measure the magneto-optical activity of arrays of plasmonic nanoantennas?",
-        "actual_output": "The magneto-optical activity (MOA) of plasmonic nanoantennas is measured using a magneto-optical Kerr effect spectrometer, which includes a broadband supercontinuum tuneable laser, polarizing and focusing optics, a photoelastic modulator, and a photodetector. The instrument operates under nearly normal incidence (1°) with linearly polarized light, and the sample is rotated to align the gap between the Py disk and the Au ring with the scattering plane. An out-of-plane magnetic field saturates the magnetization of the Py nanodisks, and the MOA spectrum is measured as a function of the magnetic field.",
+        "actual_output": "The magneto-optical activity (MOA) of arrays of plasmonic nanoantennas is measured using a magneto-optical Kerr effect (MOKE) spectrometer. The setup includes a tuneable laser, polarizing optics, a photoelastic modulator, and a photodetector. The instrument operates under near-normal incidence with linearly polarized light.",
         "expected_output": "They use a magneto-optical Kerr effect spectrometer consisting of a broadband supercontinuum tunable laser, polarizing and focusing optics, a photoelastic modulator and a photodector.",
         "retrieval_context": null,
         "context": null,
@@ -385,7 +385,7 @@
     },
     {
         "input": "How does the charge transfer vary in NbSe2 as a function of interalyer distance in T/H bilayers?",
-        "actual_output": "Charge transfer in NbSe2 T/H bilayers is inversely related to the distance between layers. The experimental equilibrium distances for 4Hb compounds are marked by a larger dot with a black contour, using an extrapolated value for NbSe2. Also, Se compounds generally display smaller charge transfer than S compounds.",
+        "actual_output": "The charge transfer in NbSe2 bilayers is inversely related to the interlayer distance.  At larger distances, the charge transfer increases gradually, and at smaller distances, the rate of increase becomes more pronounced.  This relationship was observed in the study for a range of distances.",
         "expected_output": "The charge transfer diminishes rapidly as a function of increasing interalyer distance.",
         "retrieval_context": null,
         "context": null,
@@ -393,7 +393,7 @@
     },
     {
         "input": "What is the charge density wave (CDW) in heterostructures of T and H transition metal dichalcogenides?",
-        "actual_output": "Charge density waves (CDW) and superlattices in metallic layered transition metal dichalcogenides have been studied. The two-dimensional polytypes are labeled with the letters T and H. The bulk polytypes are labeled as 1T, 2H, 4Hb, etc., where the number refers to the number of layers in the unit cell. The coexistence of two charge-density waves of different symmetry in $4Hb-TaS_2$ has been observed.",
+        "actual_output": "The √ 13×√ 13 charge density wave (CDW) state in the T polytype of MX2 (M = Nb, Ta, X = S, Se) hosts a half-filled flat band. This flat band is driven into a Mott insulating state by electronic correlations. When T polytypes are coupled to H polytypes, charge transfer can destabilize the Mott state.",
         "expected_output": "The heterostructures show a $\\sqrt{13}\\times\\sqrt{13}$ CDW with a Star of David shape.",
         "retrieval_context": null,
         "context": null,
@@ -401,7 +401,7 @@
     },
     {
         "input": "How does the charge transfer vary with the Hubbard U parameter in TaS2?",
-        "actual_output": "The charge transfer and magnetization of A atoms in the T layer depend on the Hubbard U parameter for TaS2. The charge transfer is also strongly dependent on the interlayer distance. For 4Hb structures of TaS2, the charge transfers are 0.49e/u.c.",
+        "actual_output": "The charge transfer in TaS2 exhibits an inverse relationship with the Hubbard U parameter. This means that as U increases, the charge transfer decreases, although the overall impact of U on charge transfer is relatively minor. The effect of U on charge transfer is on the order of 10−2 e.",
         "expected_output": "The charge transfer increases slowly with U from 0 to 1 and then jump from 1 to 2. Then it increases slowly again.",
         "retrieval_context": null,
         "context": null,
@@ -409,7 +409,7 @@
     },
     {
         "input": "How can a supercell modulation be used in a photonic crystal to induce a topological phase transition?",
-        "actual_output": "A supercell modulation with period $N$ can be used to induce a commensurate modulation, leading to gap opening. The supercell-modulated pseudo-orbitals of the transversality-enforced tight-binding model (TETB) induce all the irreps of the supercell-modulated PhC band structure. The TETB model is developed by exploiting a formal mapping between the Schrödinger and electromagnetic wave equations, which relates energies and frequencies quadratically as $\\lambda \\sim \\omega^2$.",
+        "actual_output": "A supercell modulation in a photonic crystal can induce a topological phase transition by incorporating a phase obstruction in the supercell modulation of the dielectric elements within gyrotropic Weyl photonic crystals. This modulation, which is a static geometric deformation of the photonic crystal lattice, couples Weyl points with opposite topological charges, opening a non-trivial gap and leading to the formation of a photonic relative Axion Insulator (rAXI).  The phase of the supercell modulation is the fundamental design parameter used to induce the axionic band topology.",
         "expected_output": "The supercell modulation can be used to coupled Weyl nodes and induce a topological gap with non-zero Chern number.",
         "retrieval_context": null,
         "context": null,
@@ -417,7 +417,7 @@
     },
     {
         "input": "How are axion insulators (AXI) characterized in terms of topology?",
-        "actual_output": "Axion insulators (AXIs) are 3D inversion-symmetric magnetic materials characterized by the quantization of their electromagnetic coupling term, known as the topological $\\theta$-angle. The topological properties of AXIs induce various topological magnetoelectric effects, including quantized magneto-optical Faraday and Kerr rotation and the image magnetic monopole effect. The chiral propagation of the AXI hinge-localized modes is highly tunable, and in the presence of a ferromagnetic order, it is possible to switch between different hinge-mode configurations via external magnetic control.",
+        "actual_output": "Axion insulators are characterized by a topological θ-angle, which is quantized and pinned to π in the presence of inversion symmetry. This quantization leads to magnetoelectric effects and chiral hinge modes. The topological properties arise from the quantization of their electromagnetic coupling term.",
         "expected_output": "Axion insulators (AXIs) are characterized by the quantization of their electromagnetic coupling term, the topological θ-angle.",
         "retrieval_context": null,
         "context": null,
@@ -425,7 +425,7 @@
     },
     {
         "input": "What is the expression of the permittivity tensor in a gyroelectric medium with an external magnetic field?",
-        "actual_output": "In a gyroelectric medium with an applied magnetic field perpendicular to the surface, the dielectric tensor $\\epsilon(\\omega)$ is defined as:\n\n$\\epsilon(\\omega) = \n\\begin{bmatrix}\n\\epsilon_d(\\omega) & \\epsilon_{od}(\\omega) & 0 \\\\\n\\pm \\epsilon_{od}(\\omega) & \\epsilon_d(\\omega) & 0 \\\\\n0 & 0 & \\epsilon_d(\\omega)\n\\end{bmatrix}$,\n\nwhere $\\epsilon_d(\\omega)$ and $\\epsilon_{od}(\\omega)$ are the diagonal and off-diagonal terms, respectively. The sign of the off-diagonal elements depends on the reversal of the static magnetization.",
+        "actual_output": "The permittivity tensor in a gyroelectric medium with an external magnetic field is expressed as:\n$\\begin{pmatrix}\n  \\epsilon & -i\\eta_z & 0 \\\\\n  i\\eta_z & \\epsilon & 0 \\\\\n  0 & 0 & \\epsilon\n\\end{pmatrix}$.\nHere, $\\eta_z = \\eta_z(H_z)$ represents the bias-dependent gyroelectric parameter, and $\\epsilon$ is the dielectric constant. This form arises due to the breaking of Time-Reversal Symmetry.",
         "expected_output": "The permittivity tensor has off-diagonal imaginary components $i\\eta_z$ when the magnetic field $H_z$ is directed along z.",
         "retrieval_context": null,
         "context": null,
@@ -433,7 +433,7 @@
     },
     {
         "input": "What is the adsorption energy for a Co hexamer?",
-        "actual_output": "The adsorption energy of a $Co_6$ hexamer is 4.12 eV. The most stable adsorbed geometry of the $Co_6$ cluster is on top of the B atom. The structure is an incomplete pentagonal bipyramid.",
+        "actual_output": "The adsorption energy for a Co hexamer on the BGDY surface is 4.12 eV. This is determined from equation (1) and is a smaller value compared to V6. The Co6 cluster's most stable adsorbed geometry is on top of the B atom.",
         "expected_output": "The adsoprtion energy is 4.12 eV.",
         "retrieval_context": null,
         "context": null,
@@ -441,7 +441,7 @@
     },
     {
         "input": "What kind of material is graphdyine and what is BGDY?",
-        "actual_output": "Graphdiyne (GDY) is a synthetic carbon allotrope with a layered framework formed by benzoic rings connected by butadiyne chains. A new member in the GDY family is boron-graphdiyne (BGDY), where single boron atoms replace the hexagonal carbon rings in the GDY lattice. Boron has three valence electrons and forms bonds with three carbon butadiyne chains, leading to the formation of a 2D honeycomb lattice with large hexagonal holes.",
+        "actual_output": "Graphdiyne is a synthetic carbon allotrope. BGDY, or boron-graphdiyne, is a new member in the graphdiyne family. It is a 2D structure where boron atoms replace the hexagonal carbon rings in the graphdiyne lattice.",
         "expected_output": "Graphdiyne (GDY) is a synthetic carbon allotrope with a layered framework formed by benzoic rings connected by carbon chains. Boron-graphdiyne (BGDY) is a member of the GDY family where single boron atoms replace the hexagonal carbon rings in the GDY lattice, forming a 2D honeycomb lattice with large hexagonal holes.",
         "retrieval_context": null,
         "context": null,
@@ -449,7 +449,7 @@
     },
     {
         "input": "How can adsoprtion of transition metal atoms on BDGY be modeled?",
-        "actual_output": "The adsorption of transition metal atoms on BGDY can be modeled using density functional theory calculations, specifically employing the quantum-ESPRESSO suite of electronic structure codes, version 6.4.1. The Perdew-Burke-Ernzerhof generalized gradient approximation (GGA-PBE) is selected for the exchange-correlation. In this model, metal atoms sit in the corner adsorption site with specific interatomic distances between the adsorbed metal atom and the surrounding boron and carbon atoms.",
+        "actual_output": "The adsorption of transition metal atoms and clusters on BGDY is modeled using density functional theory. The Perdew-Burke-Ernzerhof generalized gradient approximation is selected for the exchange-correlation functional. The electron-ion core interactions are modeled using the projected augmented wave method.",
         "expected_output": "Adsorption of transition metal atoms on BGDY can be modeled using density functional theory.",
         "retrieval_context": null,
         "context": null,
@@ -457,7 +457,7 @@
     },
     {
         "input": "How are nodes and edges represented in a graph neural network?",
-        "actual_output": "In a molecule graph representation, nodes represent atoms, and edges represent the chemical bonds between atoms. In crystal graphs, the distance between atoms represents the edges. The graph G is defined as $G = (v, u, A)$, where $v$, $u$, and $A$ denote the node, the edge, and the adjacency matrix, respectively.",
+        "actual_output": "In a graph neural network, nodes can represent various entities, and their information is often updated with each layer. Edges, which connect the nodes, can represent relationships between them and are frequently defined by distance vectors.",
         "expected_output": "Nodes and edges are both represented by feature vectors.",
         "retrieval_context": null,
         "context": null,
@@ -465,7 +465,7 @@
     },
     {
         "input": "Give me an example architecture of a graph neural network used to predict physical properties of crystals and describe the internal architecture.",
-        "actual_output": "One example of a graph neural network (GNN) architecture used for crystal property prediction is the Crystal Graph Convolutional Neural Network (CGCNN). It represents the crystal structure as a graph where nodes represent atoms, and edges represent the relationship between atoms. The edges are defined based on the distance between atoms. The architecture also records the lattice vector $a; b; c$ and cell volume $\\Omega$ as $P_c$ which means crystal parameters.",
+        "actual_output": "The GeoCGNN architecture, used for predicting crystal properties, is based on a Message Passing Neural Network (MPNN). It utilizes a crystal graph where nodes represent atoms and edges represent the distance vectors between them. The model incorporates an attention mask based on mixed basis functions to encode geometric information.",
         "expected_output": "One example of a graph neural network architecture used to predict the physical properties of crystals is the Crystal Graph Convolutional Neural Network (CGCNN). In this architecture, the distance between atoms is used to represent the edges in the crystal graph. The nodes represent atoms. The graph retains the information of the topological and geometric structure of crystals and records the periodicity and key crystal information, such as the crystal lattice vector and the cell volume.",
         "retrieval_context": null,
         "context": null,
@@ -473,7 +473,7 @@
     },
     {
         "input": "How does the volume in training data affect graph neural networks?",
-        "actual_output": "Nodes in a graph neural network can gather information from each other, encoding structural and geometric information during forward propagation. Each node gathers information from its neighbors during node updating. The nodes with different positions in the topological graph can gather different information from each other.",
+        "actual_output": "The volume of the training data significantly impacts the performance of graph neural networks. Specifically, increasing the amount of training data leads to improved precision in the model. The model's precision becomes comparable to experimental results when the training data reaches a certain threshold.",
         "expected_output": "The mean absolute error of the network predictions decreases with a higher volume of trianing data. The decrease is larger for lower volumes of data and less pronounced as training set size increases beyond 10000 samples.",
         "retrieval_context": null,
         "context": null,

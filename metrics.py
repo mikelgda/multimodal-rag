@@ -22,3 +22,35 @@ def ndcg_at_k(relevance_scores, k):
     dcg = dcg_at_k(relevance_scores, k)
     ideal_dcg = dcg_at_k(sorted(relevance_scores, reverse=True), k)
     return dcg / ideal_dcg if ideal_dcg != 0 else 0.0
+
+
+def cosine_similarity(a, b):
+    """
+    Computes cosine similarity between two vectors.
+    :param a: First vector.
+    :param b: Second vector.
+    :return: Cosine similarity score.
+    """
+    dot_product = np.dot(a, b)
+    norm_a = np.linalg.norm(a)
+    norm_b = np.linalg.norm(b)
+
+    if norm_a == 0 or norm_b == 0:
+        return 0.0
+
+    return dot_product / (norm_a * norm_b)
+
+
+def similarity_scores(actual, expected):
+    """
+    Computes the similarity scores between two lists of vectors.
+    :param actual: List of actual vectors.
+    :param expected: List of expected vectors.
+    :return: List of similarity scores.
+    """
+    scores = []
+    for a, b in zip(actual, expected):
+        score = cosine_similarity(a, b)
+        scores.append(score)
+
+    return np.array(scores)
