@@ -1,8 +1,8 @@
 import re
 
-from deepeval.dataset import EvaluationDataset
-from deepeval.test_case import LLMTestCase
-from langchain_community.document_loaders import PyPDFLoader
+# from deepeval.dataset import EvaluationDataset
+# from deepeval.test_case import LLMTestCase
+# from langchain_community.document_loaders import PyPDFLoader
 
 
 def load_all_files(root_path, mode="page"):

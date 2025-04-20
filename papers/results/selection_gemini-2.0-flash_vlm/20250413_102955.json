@@ -57,7 +57,7 @@
     },
     {
         "input": "What is the angular dependence of the electronic magnetochiral anisotropy (eMChA) in CsV3Sb5?",
-        "actual_output": "",
+        "actual_output": "The angular dependence of the electronic magnetochiral anisotropy (eMChA) in CsV3Sb5 is observed in the experiments. The eMChA signal is significant only at temperatures below 7.5K. The eMChA shows a direct correspondence between electronic chirality, unidirectional orbital order, and spontaneous time-reversal symmetry breaking due to putative orbital loop currents.",
         "expected_output": "The second harmonic response $V_{2\\omega}$ shows a sudden sign reversal within 0.5º when the current is applied along the c axis ($I||c$).",
         "retrieval_context": null,
         "context": null,
@@ -65,7 +65,7 @@
     },
     {
         "input": "What is the temperature dependence of the electronic magnetochiral anisotropy (eMChA) in CsV3Sb5?",
-        "actual_output": "",
+        "actual_output": "The electronic magnetochiral anisotropy (eMChA) in CsV3Sb5 exhibits a temperature dependence. The eMChA signal becomes significant only at temperatures below 35 K. At low temperatures, the eMChA is enabled by the breaking of mirror symmetry.",
         "expected_output": "The sudden sign reversal in the second harmonic response $V_{2\\omega}$ is less pronounced with increasing temperature.",
         "retrieval_context": null,
         "context": null,
