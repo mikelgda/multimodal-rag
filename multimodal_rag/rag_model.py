@@ -8,7 +8,7 @@ from .utils import process_doc
 from .vlm import VLM
 
 
-class SimpleMultiModalRAGModel:
+class SimpleMultiModalRetriever:
 
     @classmethod
     def from_pretrained(
@@ -207,7 +207,7 @@ class SimpleMultiModalRAGModel:
         )
 
 
-class QdrantMultiModalRAGModel:
+class QdrantMultiModalRetriever:
 
     def __init__(self, vlm, client, save_docs_path=None):
         self.vlm = vlm
